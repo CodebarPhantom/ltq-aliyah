@@ -36,7 +36,7 @@ class PermissionController extends MasterController
             $this->data = compact('breadcrumbs', 'pageTitle');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission.index'));
+        return $this->callFunction($func, view('role-permission.permission.index'));
     }
 
 
@@ -51,7 +51,7 @@ class PermissionController extends MasterController
             $this->data = compact('breadcrumbs', 'pageTitle', 'permissionGroups');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission.create'));
+        return $this->callFunction($func, view('role-permission.permission.create'));
     }
 
     public function store(Request $request)
@@ -86,7 +86,7 @@ class PermissionController extends MasterController
             $this->data = compact('breadcrumbs', 'pageTitle', 'editPageTitle', 'permission', 'permissionGroups');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission.show'));
+        return $this->callFunction($func, view('role-permission.permission.show'));
     }
 
     public function edit ($id){
@@ -102,7 +102,7 @@ class PermissionController extends MasterController
             $this->data = compact('breadcrumbs', 'pageTitle', 'permission', 'permissionGroups');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission.edit'));
+        return $this->callFunction($func, view('role-permission.permission.edit'));
     }
 
     public function update($id, Request $request)

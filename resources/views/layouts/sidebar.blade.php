@@ -3,11 +3,11 @@
 		id="sidebar_header">
 		<a class="dark:hidden" href="{{ url('/') }}">
 			<img class="default-logo pt-3 min-h-[22px] max-w-none" src="assets/media/app/al-khumasi-200.png" />
-			<img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/mini-logo-50x50.png" />
+			<img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/ms-icon-70x70.png" />
 		</a>
 		<a class="hidden dark:block" href="{{ url('/') }}">">
 			<img class="default-logo pt-3 min-h-[22px] max-w-none" src="assets/media/app/al-khumasi-200.png" />
-			<img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/mini-logo-50x50.png" />
+			<img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/ms-icon-70x70.png" />
 		</a>
 		<button
 			class="btn btn-icon btn-icon-md size-[30px] rounded-lg border border-gray-200 dark:border-gray-300 bg-light text-gray-500 hover:text-gray-700 toggle absolute left-full top-2/4 -translate-x-2/4 -translate-y-2/4"

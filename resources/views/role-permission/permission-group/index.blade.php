@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Container -->
-    @include('backoffice.config.company.partials.submenu')
+    @include('role-permission.partials.submenu')
     <!-- Container -->
     <div class="container-fixed">
         <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
@@ -173,11 +173,7 @@
             }
         };
         const dataTable = new KTDataTable(element, dataTableOptions);
-        dataTable.search('');
-
         const refreshTable = document.getElementById('refresh-btn').addEventListener('click', function() {
-            const searchInput = document.querySelector('[data-datatable-search="#kt_remote_table"]');
-            searchInput.value = '';
             dataTable.reload();
         });
 

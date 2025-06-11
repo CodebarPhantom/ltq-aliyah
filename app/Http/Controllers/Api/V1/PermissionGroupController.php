@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\BackOffice;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\MasterController;
 use App\Models\PermissionGroup;

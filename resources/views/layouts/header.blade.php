@@ -5,7 +5,7 @@
     <div class="container-fixed flex justify-between items-stretch lg:gap-4" id="header_container">
         <div class="flex gap-1 lg:hidden items-center -ml-1">
             <a class="shrink-0" href="html/demo1.html">
-                <img class="max-h-[25px] w-full" src="assets/media/app/mini-logo-50x50.png" />
+                <img class="max-h-[25px] w-full" src="assets/media/app/ms-icon-70x70.png" />
             </a>
             <div class="flex items-center">
                 <button class="btn btn-icon btn-light btn-clear btn-sm" data-drawer-toggle="#sidebar">

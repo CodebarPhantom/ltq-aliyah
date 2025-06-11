@@ -25,12 +25,12 @@ class PermissionGroupController extends MasterController
         $func = function () {
             Gate::authorize('readPolicy', PermissionGroup::class);
 
-            $breadcrumbs = ['Perusahaan', 'Grup Hak Akses'];
+            $breadcrumbs = ['Roles & Permissions', 'Grup Hak Akses'];
             $pageTitle = "Grup Hak Akses";
             $this->data = compact('breadcrumbs', 'pageTitle');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission-group.index'));
+        return $this->callFunction($func, view('role-permission.permission-group.index'));
     }
 
 
@@ -39,12 +39,12 @@ class PermissionGroupController extends MasterController
         $func = function () {
             Gate::authorize('createPolicy', PermissionGroup::class);
 
-            $breadcrumbs = ['Perusahaan', 'Grup Hak Akses', 'Tambah Grup Hak Akses'];
+            $breadcrumbs = ['Roles & Permissions', 'Grup Hak Akses', 'Tambah Grup Hak Akses'];
             $pageTitle = "Tambah Grup Hak Akses";
             $this->data = compact('breadcrumbs', 'pageTitle');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission-group.create'));
+        return $this->callFunction($func, view('role-permission.permission-group.create'));
     }
 
     public function store(Request $request)
@@ -71,7 +71,7 @@ class PermissionGroupController extends MasterController
         $func = function () use ($id) {
             Gate::authorize('readPolicy', PermissionGroup::class);
 
-            $breadcrumbs = ['Perusahaan', 'Grup Hak Akses', 'Lihat Grup Hak Akses'];
+            $breadcrumbs = ['Roles & Permissions', 'Grup Hak Akses', 'Lihat Grup Hak Akses'];
             $pageTitle = "Lihat Grup Hak Akses";
             $editPageTitle = "Ubah Grup Hak Akses";
 
@@ -79,7 +79,7 @@ class PermissionGroupController extends MasterController
             $this->data = compact('breadcrumbs', 'pageTitle', 'editPageTitle', 'permissionGroup');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission-group.show'));
+        return $this->callFunction($func, view('role-permission.permission-group.show'));
     }
 
 
@@ -88,14 +88,14 @@ class PermissionGroupController extends MasterController
         $func = function () use ($id) {
             Gate::authorize('updatePolicy', PermissionGroup::class);
 
-            $breadcrumbs = ['Perusahaan', 'Grup Hak Akses', 'Ubah Grup Hak Akses'];
+            $breadcrumbs = ['Roles & Permissions', 'Grup Hak Akses', 'Ubah Grup Hak Akses'];
             $pageTitle = "Ubah Grup Hak Akses";
 
             $permissionGroup = $this->permissionGroupService->showPermissionGroup($id);
             $this->data = compact('breadcrumbs', 'pageTitle', 'permissionGroup');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.permission-group.edit'));
+        return $this->callFunction($func, view('role-permission.permission-group.edit'));
     }
 
     public function update($id, Request $request)
