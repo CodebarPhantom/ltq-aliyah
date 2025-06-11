@@ -9,20 +9,20 @@ class MosquePolicy
 
     public function readPolicy(User $user): bool
     {
-        return $user->can('company-read');
+        return $user->can('mosque-read');
     }
 
     public function createPolicy(User $user): bool
     {
-        return $user->can('company-create');
+        return $user->can('mosque-create');
     }
 
     public function updatePolicy(User $user): bool
     {
-        return $user->can('company-update');
+        return $user->can('mosque-update');
     }
     public function deletePolicy(User $user): bool
     {
-        return $user->can('company-delete');
+        return $user->can('mosque-delete');
     }
 }

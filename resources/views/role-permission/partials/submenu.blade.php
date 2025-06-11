@@ -5,63 +5,13 @@
         <div class="grid">
             <div class="scrollable-x-auto">
                 <div class="menu gap-3" data-menu="true">
-
-                    @can('entity-read')
-                        <div
-                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary {{ request()->is('entity*') ? 'active' : '' }}">
-                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2" href="{{ route('entity.index') }}" tabindex="0">
-                                <span
-                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                    Entitas
-                                </span>
-                            </a>
-                        </div>
-                    @endcan
-
-                    @can('company-read')
-                        <div
-                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary {{ request()->is('company*') ? 'active' : '' }}  ">
-                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2" href="{{ route('company.index') }}"
-                                tabindex="0">
-                                <span
-                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                    Lokasi Kantor
-                                </span>
-                            </a>
-                        </div>
-                    @endcan
-
-                    @can('division-read')
-                        <div
-                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary {{ request()->is('division*') ? 'active' : '' }} ">
-                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2" href="{{ route('division.index') }}"
-                                tabindex="0">
-                                <span
-                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                    Divisi
-                                </span>
-                            </a>
-                        </div>
-                    @endcan
-                    @can('department-read')
-                        <div
-                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary {{ request()->is('departement*') ? 'active' : '' }}">
-                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2" href="{{ route('departement.index') }}"
-                                tabindex="0">
-                                <span
-                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                    Departemen
-                                </span>
-                            </a>
-                        </div>
-                    @endcan
                     @can('role-read')
                         <div
                             class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary {{ request()->is('roles*') ? 'active' : '' }}">
                             <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2" href="{{ route('roles.index') }}" tabindex="0">
                                 <span
                                     class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
-                                    Jabatan
+                                    Roles
                                 </span>
                             </a>
                         </div>

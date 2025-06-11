@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\V1\BackOffice\DivisionController;
 use App\Http\Controllers\Api\V1\BackOffice\DepartementController;
 use App\Http\Controllers\Api\V1\BackOffice\PermissionGroupController;
 use App\Http\Controllers\Api\V1\BackOffice\PermissionController;
-use App\Http\Controllers\Api\V1\BackOffice\RoleController;
+use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\BackOffice\MyActivity\MyLeaveController;
 use App\Http\Controllers\Api\V1\BackOffice\MyActivity\MyPermitController;
 use App\Http\Controllers\Api\V1\UserController;

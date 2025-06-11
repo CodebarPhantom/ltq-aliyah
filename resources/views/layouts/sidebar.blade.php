@@ -2,11 +2,11 @@
 	<div class="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
 		id="sidebar_header">
 		<a class="dark:hidden" href="{{ url('/') }}">
-			<img class="default-logo pt-3 min-h-[22px] max-w-none" src="assets/media/app/vtnet-150.png" />
+			<img class="default-logo pt-3 min-h-[22px] max-w-none" src="assets/media/app/al-khumasi-200.png" />
 			<img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/mini-logo-50x50.png" />
 		</a>
 		<a class="hidden dark:block" href="{{ url('/') }}">">
-			<img class="default-logo pt-3 min-h-[22px] max-w-none" src="assets/media/app/vtnet-150.png" />
+			<img class="default-logo pt-3 min-h-[22px] max-w-none" src="assets/media/app/al-khumasi-200.png" />
 			<img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/mini-logo-50x50.png" />
 		</a>
 		<button

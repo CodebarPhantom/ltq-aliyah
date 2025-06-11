@@ -15,7 +15,6 @@ class PermissionGroupService extends MasterService
             'slug'=> Str::slug($data['name']),
             'is_active' => $data['is_active']
         ]);
-        $this->appLogService->logChange($permissionGroup, 'created');
         return $permissionGroup;
     }
 
@@ -33,7 +32,6 @@ class PermissionGroupService extends MasterService
             'is_active' => $data['is_active']
         ]);
         $permissionGroup->update($data);
-        $this->appLogService->logChange($permissionGroup, 'updated');
         return $permissionGroup;
     }
 
@@ -41,7 +39,6 @@ class PermissionGroupService extends MasterService
     {
         $permissionGroup = PermissionGroup::findOrFail($id);
         if ($permissionGroup->delete()) {
-            $this->appLogService->logChange($permissionGroup, 'deleted');
         }
         return $permissionGroup;
     }

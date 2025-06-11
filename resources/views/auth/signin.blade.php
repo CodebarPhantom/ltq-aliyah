@@ -14,19 +14,19 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 
 <head>
     <meta charset="utf-8">
-    <title> ERP VTNet - {{ 'Signin' ?? 'Karawang' }} </title>
+    <title> Al-Khumasi TahfizhPedia - {{ 'Signin' ?? 'Karawang' }} </title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex">
     <meta name="author" content="Eryan Fauzan">
-    <meta name="description" content="ERP VTNet Karawang">
+    <meta name="description" content="Al-Khumasi TahfizhPedia Karawang">
     <link rel="icon" type="image/png" href="{{ asset('assets/media/app/favicon-48x48.png') }}" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('assets/media/app/favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ asset('assets/media/app/favicon.ico') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/media/app/apple-touch-icon.png') }}" />
-    <meta name="apple-mobile-web-app-title" content="ERP VTNet" />
+    <meta name="apple-mobile-web-app-title" content="Al-Khumasi TahfizhPedia" />
     <link rel="manifest" href="{{ asset('assets/media/app/site.webmanifest') }}" />
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -86,8 +86,11 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                     method="post">
                     @csrf
                     <div class="text-center mb-2.5">
+                        <a href="h#">
+                            <img class="h-[100px] max-w-non mx-auto" src="assets/media/app/web-app-manifest-512x512.png" />
+                        </a>
                         <h3 class="text-lg font-medium text-gray-900 leading-none mb-2.5">
-                            Akun Al-Khumasi
+                            Akun Al-Khumasi TahfizhPedia
                         </h3>
                     </div>
                     <div class="flex flex-col gap-1">
@@ -146,12 +149,13 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
         <div
             class="lg:rounded-xl lg:border lg:border-gray-200 lg:m-5 order-1 lg:order-2 bg-top xxl:bg-center xl:bg-cover bg-no-repeat branded-bg ">
             <div class="flex flex-col p-8 lg:p-16 gap-4">
-                {{-- <a href="h#">
-                    <img class="h-[45px] max-w-none" src="assets/media/app/mini-logo-50x50.png" />
-                </a> --}}
+                <a href="h#">
+                    <img class="h-[45px] max-w-none" src="assets/media/app/al-khumasi-200.png" />
+                </a>
+
                 <div class="flex flex-col gap-3">
                     <h3 class="text-2xl font-semibold text-gray-400">
-                        Al-Khumasi
+                        Al-Khumasi TahfizhPedia
                     </h3>
                     <div class="text-base font-medium text-gray-200">
                         Selamat datang di portal Al-Khumasi<br>

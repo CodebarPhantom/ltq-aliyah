@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
 
         // Run the PermissionSeeder
         $this->call([
-            //PermissionSeeder::class
+            PermissionSeeder::class
         ]);
 
         // Fetch all permissions created by PermissionSeeder

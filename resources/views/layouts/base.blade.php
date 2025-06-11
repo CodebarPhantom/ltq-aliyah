@@ -13,19 +13,19 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 
 <head>
     <meta charset="utf-8">
-    <title> ERP VTNet - {{ $data['pageTitle'] ?? 'Karawang' }} </title>
+    <title> Al-Khumasi TahfizhPedia - {{ $data['pageTitle'] ?? 'Karawang' }} </title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex">
     <meta name="author" content="Eryan Fauzan">
-    <meta name="description" content="ERP VTNet Karawang">
+    <meta name="description" content="Al-Khumasi TahfizhPedia Karawang">
     <link rel="icon" type="image/png" href="{{ asset('assets/media/app/favicon-48x48.png') }}" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('assets/media/app/favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ asset('assets/media/app/favicon.ico') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/media/app/apple-touch-icon.png') }}" />
-    <meta name="apple-mobile-web-app-title" content="ERP VTNet" />
+    <meta name="apple-mobile-web-app-title" content="Al-Khumasi TahfizhPedia" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="{{ asset('assets/media/app/site.webmanifest') }}" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">

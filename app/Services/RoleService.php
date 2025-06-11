@@ -19,7 +19,7 @@ class RoleService extends MasterService
         if (isset($data['permissions']) && !empty($data['permissions'])) {
             $role->syncPermissions($data['permissions']);
         }
-        $this->appLogService->logChange($role, 'created');
+
 
         return;
 
@@ -40,7 +40,6 @@ class RoleService extends MasterService
             'guard_name' => 'web',
             'is_active'=> $data['is_active']
         ]);
-        $this->appLogService->logChange($role, 'updated');
 
 
         return;

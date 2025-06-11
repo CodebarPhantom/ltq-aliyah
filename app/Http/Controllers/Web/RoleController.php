@@ -30,12 +30,12 @@ class RoleController extends MasterController
         $func = function () {
             Gate::authorize('readPolicy', Role::class);
 
-            $breadcrumbs = ['Perusahaan', 'Jabatan'];
-            $pageTitle = "Jabatan";
+            $breadcrumbs = ['Roles & Permissions', 'Roles'];
+            $pageTitle = "Roles";
             $this->data = compact('breadcrumbs', 'pageTitle');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.role.index'));
+        return $this->callFunction($func, view('role-permission.role.index'));
     }
 
 
@@ -44,13 +44,13 @@ class RoleController extends MasterController
         $func = function () {
             Gate::authorize('createPolicy', Role::class);
 
-            $breadcrumbs = ['Perusahaan', 'Jabatan', 'Tambah Jabatan'];
-            $pageTitle = "Tambah Jabatan";
+            $breadcrumbs = ['Roles & Permissions', 'Roles', 'Tambah Role'];
+            $pageTitle = "Tambah Role";
             $permissionGroupWithPermissions = $this->permissionGroupService->getAllPermissionGroupWithPermissions();
             $this->data = compact('breadcrumbs', 'pageTitle', 'permissionGroupWithPermissions');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.role.create'));
+        return $this->callFunction($func, view('role-permission.role.create'));
     }
 
     public function store(Request $request)
@@ -67,7 +67,7 @@ class RoleController extends MasterController
 
 
             $this->roleService->storeRole($data);
-            session()->flash('flashMessageSuccess', 'Task was successful!');
+            $this->messages = ['Role baru berhasil ditambahkan!'];
         };
 
         return $this->callFunction($func, null, 'roles.index');
@@ -79,9 +79,9 @@ class RoleController extends MasterController
             Gate::authorize('readPolicy', Role::class);
 
 
-            $breadcrumbs = ['Perusahaan', 'Jabatan', 'Lihat Jabatan'];
-            $pageTitle = "Lihat Jabatan";
-            $editPageTitle = "Ubah Jabatan";
+            $breadcrumbs = ['Roles & Permissions', 'Roles', 'Lihat Role'];
+            $pageTitle = "Lihat Role";
+            $editPageTitle = "Ubah Role";
 
             $permissionGroupWithPermissions = $this->permissionGroupService->getAllPermissionGroupWithPermissions();
             $role = $this->roleService->showRole($id);
@@ -90,7 +90,7 @@ class RoleController extends MasterController
 
        };
 
-       return $this->callFunction($func, view('backoffice.config.company.role.show'));
+       return $this->callFunction($func, view('role-permission.role.show'));
 
     }
 
@@ -98,8 +98,8 @@ class RoleController extends MasterController
         $func = function () use ($id) {
             Gate::authorize('updatePolicy', Role::class);
 
-            $breadcrumbs = ['Perusahaan', 'Jabatan', 'Ubah Jabatan'];
-            $pageTitle = "Ubah Jabatan";
+            $breadcrumbs = ['Roles & Permissions', 'Roles', 'Ubah Role'];
+            $pageTitle = "Ubah Role";
 
             $permissionGroupWithPermissions = $this->permissionGroupService->getAllPermissionGroupWithPermissions();
             $role = $this->roleService->showRole($id);
@@ -107,7 +107,7 @@ class RoleController extends MasterController
             $this->data = compact('breadcrumbs', 'pageTitle', 'permissionGroupWithPermissions','role');
         };
 
-        return $this->callFunction($func, view('backoffice.config.company.role.edit'));
+        return $this->callFunction($func, view('role-permission.role.edit'));
     }
 
     public function update($id, Request $request)

@@ -16,7 +16,6 @@ class PermissionService extends MasterService
             'slug'=> Str::slug($data['name']),
             'guard_name' => 'web'
         ]);
-        $this->appLogService->logChange($permission, 'created');
         return $permission;
     }
 
@@ -39,7 +38,6 @@ class PermissionService extends MasterService
             'name'=> $data['name'],
             'slug'=> Str::slug($data['name'])
         ]);
-        $this->appLogService->logChange($permission, 'updated');
         return $permission;
     }
 

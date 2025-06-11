@@ -4,29 +4,29 @@ namespace App\Policies;
 
 use App\Models\User;
 
-class CongerationPolicy
+class CongregationPolicy
 {
 
     public function readPolicy(User $user): bool
     {
-        return $user->can('employee-read');
+        return $user->can('congregation-read');
 
     }
 
     public function createPolicy(User $user): bool
     {
-        return $user->can('employee-create');
+        return $user->can('congregation-create');
 
     }
 
     public function updatePolicy(User $user): bool
     {
-        return $user->can('employee-update');
+        return $user->can('congregation-update');
 
     }
     public function deletePolicy(User $user): bool
     {
-        return $user->can('employee-delete');
+        return $user->can('congregation-delete');
 
     }
 }

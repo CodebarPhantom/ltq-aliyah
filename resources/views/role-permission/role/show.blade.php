@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Container -->
-    @include('backoffice.config.company.partials.submenu')
+    @include('role-permission.partials.submenu')
     <!-- Container -->
 
         <div class="container-fixed">
