@@ -12,7 +12,7 @@ class BaseNotification extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'mosque_id', 'for_all_users', 'title', 'description', 'is_read'
+        'user_id', 'location_id', 'for_all_users', 'title', 'description', 'is_read'
     ];
 
     protected $dates = ['created_at', 'updated_at'];

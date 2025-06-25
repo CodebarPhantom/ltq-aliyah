@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mosques', function (Blueprint $table) {
+        Schema::table('locations', function (Blueprint $table) {
             $table->string('latitude')->nullable()->after('phone');
             $table->string('longitude')->nullable()->after('latitude');
             $table->unsignedInteger('radius')->nullable()->after('longitude');
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mosques', function (Blueprint $table) {
+        Schema::table('locations', function (Blueprint $table) {
             //
         });
     }

@@ -4,29 +4,25 @@ namespace App\Policies;
 
 use App\Models\User;
 
-class CongregationPolicy
+class LocationPolicy
 {
 
     public function readPolicy(User $user): bool
     {
-        return $user->can('congregation-read');
-
+        return $user->can('location-read');
     }
 
     public function createPolicy(User $user): bool
     {
-        return $user->can('congregation-create');
-
+        return $user->can('location-create');
     }
 
     public function updatePolicy(User $user): bool
     {
-        return $user->can('congregation-update');
-
+        return $user->can('location-update');
     }
     public function deletePolicy(User $user): bool
     {
-        return $user->can('congregation-delete');
-
+        return $user->can('location-delete');
     }
 }

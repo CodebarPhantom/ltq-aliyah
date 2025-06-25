@@ -11,11 +11,11 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         // Helper function to create permission group and permissions if they don't exist
-        $this->createPermissionGroupWithPermissions('Tempat Halaqah', [
-            'mosque-read',
-            'mosque-create',
-            'mosque-update',
-            'mosque-delete'
+        $this->createPermissionGroupWithPermissions('Lokasi', [
+            'location-read',
+            'location-create',
+            'location-update',
+            'location-delete'
         ]);
 
         $this->createPermissionGroupWithPermissions('Jama\'ah', [

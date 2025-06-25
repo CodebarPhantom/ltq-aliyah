@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('base_notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable()->index(); // For individual notifications
-            $table->unsignedBigInteger('mosque_id')->nullable()->index(); // For department-specific notifications
+            $table->unsignedBigInteger('location_id')->nullable()->index(); // For department-specific notifications
             $table->boolean('for_all_users')->default(false); // Flag to indicate notification is for all users
             $table->string('title')->nullable();
             $table->text('description')->nullable();

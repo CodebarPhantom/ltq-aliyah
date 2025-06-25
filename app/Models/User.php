@@ -68,7 +68,7 @@ class User extends Authenticatable
             ->where(function ($query) {
                 $query->where('user_id', Auth::user()->id)
                     ->orWhere('for_all_users', true)
-                    ->orWhere('mosque_id', Auth::user()->load('congregation')->mosque_id); // Ensure to join with employee relation
+                    ->orWhere('location_id', Auth::user()->location_id); // Ensure to join with employee relation
             })
             ->latest()
             ->take(10);
@@ -79,7 +79,7 @@ class User extends Authenticatable
         return $this->hasMany(BaseNotification::class)
             ->where(function ($query) {
                 $query->where('user_id', Auth::user()->id)
-                    ->where('mosque_id', null)
+                    ->where('location_id', null)
                     ->orWhere('for_all_users', true);
             })
             ->latest()
@@ -89,7 +89,7 @@ class User extends Authenticatable
     public function latestNotificationDepartment()
     {
         return $this->hasMany(BaseNotification::class)
-            ->where('mosque_id', Auth::user()->load('congregation')->mosque_id) // Ensure to join with employee relation
+            ->where('location_id', Auth::user()->location_id) // Ensure to join with employee relation
             ->latest()
             ->take(10);
     }

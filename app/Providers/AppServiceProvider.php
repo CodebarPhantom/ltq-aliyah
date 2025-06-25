@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Mosque;
-use App\Policies\MosquePolicy;
+use App\Models\Location;
+use App\Policies\LocationPolicy;
 use App\Models\Congregation;
 use App\Policies\CongregationPolicy;
 use App\Models\Permission;
@@ -76,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
         //Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
         //Gate::policy(User::class, UserPolicy::class);
         //Gate::policy(EmployeeLeave::class, MyLeavePolicy::class);
-        Gate::policy(Mosque::class, MosquePolicy::class);
+        Gate::policy(Location::class, LocationPolicy::class);
         Gate::policy(Congregation::class, CongregationPolicy::class);
         Gate::policy(Permission::class, PermissionPolicy::class);
         Gate::policy(PermissionGroup::class, PermissionGroupPolicy::class);

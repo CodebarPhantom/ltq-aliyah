@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Congregation extends Model
+class Location extends Model
 {
     use HasFactory;
 
@@ -16,25 +14,11 @@ class Congregation extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'code',
-        'no_ktp',
-        'pob',
-        'dob',
-        'address',
-        'phone',
-        'gender',
-        'role_id',
-        'is_active',
-        'mosque_id',
-    ];
+    protected $fillable = ['name', 'address', 'phone', 'status', 'latitude','longitude','radius'];
 
-    protected $appends = ['is_active_name', 'is_active_color'];
-
-    public function getIsActiveColorAttribute()
+    public function getStatusColorAttribute()
     {
-        switch ($this->is_active) {
+        switch ($this->status) {
             case 1:
                 return 'bg-success';
             case 0:
@@ -44,9 +28,9 @@ class Congregation extends Model
         }
     }
 
-    public function getIsActiveNameAttribute()
+    public function getStatusNameAttribute()
     {
-        switch ($this->is_active) {
+        switch ($this->status) {
             case 1:
                 return 'Active'; // Human-readable status name for active
             case 0:
@@ -55,22 +39,9 @@ class Congregation extends Model
                 return 'Unknown'; // Default for unknown status
         }
     }
-
-  
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id');
-    }
-
-    public function user()
-    {
-        return $this->hasOne(User::class, 'congregation_id');
-    }
-    
-
     public function scopeActive($query)
     {
-        return $query->where('is_active', 1);
+        return $query->where('status',1);
     }
+
 }

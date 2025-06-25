@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Mosque;
+use App\Models\Location;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Permission;
@@ -21,30 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         // Check if the user exists
 
-        $mosque = Mosque::firstOrCreate(['name' => 'Masjid Jami Aliyah'], ['name' => 'Masjid Jami Aliyah', 'phone' => 'XXXXXXX', 'address' => 'XXXXXXX']);
+        $location = Location::firstOrCreate(['name' => 'Masjid Jami Aliyah'], ['name' => 'Masjid Jami Aliyah', 'phone' => 'XXXXXXX', 'address' => 'XXXXXXX']);
 
         $role = Role::firstOrCreate(
             ['name' => 'Administrator', 'guard_name' => 'web'],
             ['name' => 'Administrator', 'guard_name' => 'web']
         );
         $user = User::where('email', 'muhamad.muslih@alkhumasi.id')->first();
-        $congregation = Congregation::where('name', 'Muhamad Muslih')->first();
-
-
-        if (!$congregation) {
-            $congregation = Congregation::create([
-                'name' => 'Muhamad Muslih',
-                'code' => 'XXXXXXXX',
-                'no_ktp' => 'XXXXXXXX',
-                'pob' => 'Karawang',
-                'dob' => '1995-10-07',
-                'address' => 'Kepuh Karawang',
-                'phone' => 'XXXXXXXX',
-                'gender' => 'Laki-laki',
-                'role_id' => $role->id,
-                'mosque_id' => $mosque->id,
-            ]);
-        }
 
         if (!$user) {
             // If user doesn't exist, create a new user
@@ -54,7 +37,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('admin@2024!'),
                 'remember_token' => Str::random(10),
-                'congregation_id' => $congregation->id
+                'location_id' => $location->id
             ]);
         }
 
