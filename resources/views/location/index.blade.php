@@ -2,8 +2,6 @@
 
 @section('content')
     <!-- Container -->
-    @include('backoffice.config.company.partials.submenu')
-    <!-- Container -->
     <div class="container-fixed">
         <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
             <div class="flex flex-col justify-center gap-2">
@@ -25,7 +23,7 @@
                 <button id="refresh-btn" class="btn btn-sm text-center btn-info">
                     <i class="ki-filled ki-arrows-circle"></i>
                 </button>
-                <a class="btn btn-sm text-center btn-success" href="{{ route('company.create') }}">
+                <a class="btn btn-sm text-center btn-success" href="{{ route('location.create') }}">
                     <i class="ki-filled ki-plus"></i>Tambah {{ $data['pageTitle'] }}
                 </a>
 
@@ -54,13 +52,6 @@
                                                 </span>
                                             </span>
                                         </th>
-                                        <th class="w-1/6 text-center" data-datatable-column="entity">
-                                            <span class="sort">
-                                                <span class="sort-label">
-                                                    Entitas
-                                                </span>
-                                            </span>
-                                        </th>
                                         <th class="w-3/12 text-center" data-datatable-column="address">
                                             <span class="sort">
                                                 <span class="sort-label">
@@ -71,7 +62,7 @@
                                         <th class="w-1/12 text-center" data-datatable-column="phone">
                                             <span class="sort">
                                                 <span class="sort-label">
-                                                    Phone
+                                                    Telfon
                                                 </span>
                                             </span>
                                         </th>
@@ -115,22 +106,22 @@
     </div>
     <!-- End of Container -->
     @include('partials.modal-confirm-delete', [
-        'mainTitle' => 'Hapus lokasi kantor?',
-        'mainContent' => 'Apakah anda yakin untuk menghapus lokasi kantor ini?',
+        'mainTitle' => 'Hapus lokasi lokasi?',
+        'mainContent' => 'Apakah anda yakin untuk menghapus lokasi lokasi ini?',
     ])
 @endsection
 
 @push('javascript')
     <!-- Begin - Define Route -->
     <script type="text/javascript">
-        const showRoute = "{{ route('company.show', ':id') }}"; // Pass route pattern to JS
-        const editRoute = "{{ route('company.edit', ':id') }}"; // Pass route pattern to JS
+        const showRoute = "{{ route('location.show', ':id') }}"; // Pass route pattern to JS
+        const editRoute = "{{ route('location.edit', ':id') }}"; // Pass route pattern to JS
     </script>
     <!-- End - Define Route -->
 
     <script type="text/javascript">
-        const apiUrl = '{{ route('api.v1.company.datatable') }}';
-        const deleteUrl = "{{ route('api.v1.company.destroy', ':id') }}";
+        const apiUrl = '{{ route('api.v1.location.datatable') }}';
+        const deleteUrl = "{{ route('api.v1.location.destroy', ':id') }}";
         const element = document.querySelector('#kt_remote_table');
 
         const dataTableOptions = {
@@ -142,12 +133,6 @@
             columns: {
                 name: {
                     title: 'Nama',
-                },
-                entity: {
-                    title: 'Entitas',
-                    render: (data, type, row) => {
-                        return `${type.entityName}`;
-                    },
                 },
                 address: {
                     title: 'Alamat',
@@ -212,12 +197,7 @@
 
         };
         const dataTable = new KTDataTable(element, dataTableOptions);
-        dataTable.search('');
-
         const refreshTable = document.getElementById('refresh-btn').addEventListener('click', function() {
-            const searchInput = document.querySelector('[data-datatable-search="#kt_remote_table"]');
-            // Clear the search input field
-            searchInput.value = '';\
             dataTable.reload();
         });
     </script>

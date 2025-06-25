@@ -30,7 +30,13 @@ return
             [
                 'header' => 'Administrator',
             ],
-
+            [
+                'title' => 'Lokasi',
+                'icon' => 'ki-filled ki-geolocation',
+                'permission' => ['location-read'],
+                'route' => 'location.index',
+                'pathUrl' => ['location*']
+            ],
             [
                 'title' => 'Roles & Permissions',
                 'icon' => 'ki-filled ki-bank',

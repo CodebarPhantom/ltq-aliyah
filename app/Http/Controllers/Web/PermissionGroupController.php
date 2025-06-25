@@ -60,7 +60,7 @@ class PermissionGroupController extends MasterController
             ]);
 
             $this->permissionGroupService->storePermissionGroup($data);
-            session()->flash('flashMessageSuccess', 'Task was successful!');
+            $this->messages = ['Grup Hak Akses berhasil ditambahkan!'];
         };
 
         return $this->callFunction($func, null, 'permission-groups.index');
@@ -109,7 +109,7 @@ class PermissionGroupController extends MasterController
             ]);
 
             $this->permissionGroupService->updatePermissionGroup($id,$data);
-            session()->flash('flashMessageSuccess', 'Task was successful!');
+            $this->messages = ['Grup Hak Akses berhasil diubah!'];
 
 
         };

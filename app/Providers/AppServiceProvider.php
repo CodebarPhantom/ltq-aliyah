@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use App\Models\Location;
 use App\Policies\LocationPolicy;
-use App\Models\Congregation;
-use App\Policies\CongregationPolicy;
 use App\Models\Permission;
 use App\Policies\PermissionPolicy;
 use App\Models\PermissionGroup;
@@ -77,7 +75,6 @@ class AppServiceProvider extends ServiceProvider
         //Gate::policy(User::class, UserPolicy::class);
         //Gate::policy(EmployeeLeave::class, MyLeavePolicy::class);
         Gate::policy(Location::class, LocationPolicy::class);
-        Gate::policy(Congregation::class, CongregationPolicy::class);
         Gate::policy(Permission::class, PermissionPolicy::class);
         Gate::policy(PermissionGroup::class, PermissionGroupPolicy::class);
         Gate::policy(Role::class, RolePolicy::class);

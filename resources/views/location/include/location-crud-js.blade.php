@@ -1,13 +1,13 @@
 @push('javascript')
     <script type="text/javascript">
-        let isDraggable = @json(request()->routeIs('company.create') || request()->routeIs('company.edit'));
+        let isDraggable = @json(request()->routeIs('location.create') || request()->routeIs('location.edit'));
 
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize the map with default location (Jakarta)
             let map = L.map('map').setView(
                 [
-                    {{ $data['company']['latitude'] ?? -6.175563639696246 }},
-                    {{ $data['company']['longitude'] ?? 106.82717621326447 }}
+                    {{ $data['location']['latitude'] ?? -6.175563639696246 }},
+                    {{ $data['location']['longitude'] ?? 106.82717621326447 }}
                 ],
                 19
             );
@@ -35,13 +35,13 @@
             // Create the marker and set its draggable state based on the route
             let marker = L.marker(
                 [
-                    {{ $data['company']['latitude'] ?? -6.175563639696246 }},
-                    {{ $data['company']['longitude'] ?? 106.82717621326447 }}
+                    {{ $data['location']['latitude'] ?? -6.175563639696246 }},
+                    {{ $data['location']['longitude'] ?? 106.82717621326447 }}
                 ], {
                     draggable: isDraggable
                 }
             ).addTo(map).bindPopup(isDraggable ? "Silahkan Geser Pin" :
-                "{{ $data['company']['name'] ?? 'Pin tidak bisa digeser' }}").openPopup();
+                "{{ $data['location']['name'] ?? 'Pin tidak bisa digeser' }}").openPopup();
 
             function updateInputFields(lat, lng) {
                 document.getElementById('latitude').value = lat;

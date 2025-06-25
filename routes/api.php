@@ -4,10 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Http\Controllers\Api\V1\BackOffice\Base\BaseNotificationController;
-use App\Http\Controllers\Api\V1\BackOffice\CompanyController;
 use App\Http\Controllers\Api\V1\BackOffice\EntityController;
-use App\Http\Controllers\Api\V1\BackOffice\DivisionController;
-use App\Http\Controllers\Api\V1\BackOffice\DepartementController;
 use App\Http\Controllers\Api\V1\PermissionGroupController;
 use App\Http\Controllers\Api\V1\PermissionController;
 use App\Http\Controllers\Api\V1\RoleController;
@@ -22,6 +19,7 @@ use App\Http\Controllers\Api\V1\BackOffice\WorkSchedule\ShiftController;
 use App\Http\Controllers\Api\V1\BackOffice\WorkSchedule\ShiftFixedController;
 use App\Http\Controllers\Api\V1\BackOffice\WorkSchedule\ShiftRotatingController;
 use App\Http\Controllers\Api\V1\BackOffice\Dashboard\DashboardController;
+use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\BackOffice\MyActivity\MyAttendanceController;
 use App\Http\Controllers\Api\V1\BackOffice\MyActivity\MyBusinessTripController;
 use App\Http\Controllers\Api\V1\BackOffice\MyActivity\MyOvertimeController;
@@ -211,21 +209,11 @@ Route::prefix("/api.")->as("api.")->group(function () {
             });
 
             // Company Routes
-            Route::prefix('/company')->as('company.')->group(function () {
-                Route::get('/datatable', [CompanyController::class, 'dataTable'])->name('datatable');
-                Route::delete('/{company}', [CompanyController::class, 'destroy'])->name('destroy');
+            Route::prefix('/location')->as('location.')->group(function () {
+                Route::get('/datatable', [LocationController::class, 'dataTable'])->name('datatable');
+                Route::delete('/{location}', [LocationController::class, 'destroy'])->name('destroy');
             });
 
-            Route::prefix('/division')->as('division.')->group(function () {
-                Route::get('/datatable', [DivisionController::class, 'dataTable'])->name('datatable');
-                Route::delete('/{division}', [DivisionController::class, 'destroy'])->name('destroy');
-            });
-
-            Route::prefix('/departement')->as('departement.')->group(function () {
-                Route::get('/datatable', [DepartementController::class, 'dataTable'])->name('datatable');
-                Route::get('/get-all-departement', [DepartementController::class, 'getDepartmentsForSelect'])->name('get-departement-for-select');
-                Route::delete('/{departement}', [DepartementController::class, 'destroy'])->name('destroy');
-            });
 
             Route::prefix('/permission-groups')->as('permission-groups.')->group(function () {
                 Route::get('/datatable', [PermissionGroupController::class, 'dataTable'])->name('datatable');

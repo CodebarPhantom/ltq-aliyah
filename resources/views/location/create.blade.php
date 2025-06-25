@@ -2,9 +2,7 @@
 
 @section('content')
     <!-- Container -->
-    @include('backoffice.config.company.partials.submenu')
-    <!-- Container -->
-    <form action="{{ route('company.store') }}" method="post">
+    <form action="{{ route('location.store') }}" method="post">
         @csrf
         <div class="container-fixed">
             <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
@@ -14,7 +12,7 @@
                     </h1>
                 </div>
                 <div class="flex items-center gap-2.5">
-                    <a class="btn text-center btn-sm btn-primary" href="{{ route('company.index') }}">
+                    <a class="btn text-center btn-sm btn-primary" href="{{ route('location.index') }}">
                         <i class="ki-filled ki-left"></i>Kembali
                     </a>
                     <button type="submit" class="btn btn-sm text-center btn-success">
@@ -30,30 +28,17 @@
             <div class="grid gap-5 mx-auto">
                 <div class="card pb-2.5">
                     <div class="card-body grid gap-5">
-                        <!-- Input Fields -->
-                        <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                            <label class="form-label max-w-56">Entitas</label>
-                            <select class="select" name="entity_id" required>
-                                <option value="" selected>--- Silahkan Pilih ---</option>
-                                @foreach ($data['entities'] as $entity)
-                                    <option value="{{ $entity['id'] }}"
-                                        {{ old('entity_id') == $entity['id'] ? 'selected' : '' }}>
-                                        {{ $entity['name'] }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
 
                         <!-- Office Name -->
                         <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                            <label class="form-label max-w-56">Nama Kantor</label>
-                            <input class="input" name="name" placeholder="Nama Kantor" type="text"
+                            <label class="form-label max-w-56">Nama Lokasi</label>
+                            <input class="input" name="name" placeholder="Nama Lokasi" type="text"
                                 value="{{ old('name') }}" />
                         </div>
 
                         <!-- Address -->
                         <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                            <label class="form-label max-w-56">Address</label>
+                            <label class="form-label max-w-56">Alamat</label>
                             <input class="input" name="address" placeholder="Alamat" type="text"
                                 value="{{ old('address') }}" />
                         </div>
@@ -61,36 +46,12 @@
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                                 <label class="form-label max-w-56">
-                                    Phone
+                                    Telfon
                                 </label>
                                 <input class="input" name="phone" placeholder="Phone" type="text"
                                     value="{{ old('phone') }}" />
 
                             </div>
-                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                <label class="form-label max-w-56">
-                                    Radius (Meter)
-                                </label>
-                                <input class="input" name="radius" placeholder="Radius" type="number"
-                                    value="{{ old('radius') }}" />
-                            </div>
-                        </div>
-
-                        <!-- Longitude and Latitude -->
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                <label class="form-label max-w-56">Longitude</label>
-                                <input id="longitude" class="input" name="longitude" placeholder="Longitude" type="text"
-                                    value="{{ old('longitude') }}" />
-                            </div>
-                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                <label class="form-label max-w-56">Latitude</label>
-                                <input id="latitude" class="input" name="latitude" placeholder="Latitude" type="text"
-                                    value="{{ old('latitude') }}" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                                 <label class="form-label max-w-56">
                                     Status
@@ -108,15 +69,37 @@
                                     </label>
                                 </div>
                             </div>
+
+                        </div>
+
+
+                        <!-- Longitude and Latitude -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                                <label class="form-label max-w-56">Longitude</label>
+                                <input id="longitude" class="input" name="longitude" placeholder="Longitude" type="text"
+                                    value="{{ old('longitude') }}" />
+                            </div>
+                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                                <label class="form-label max-w-56">Latitude</label>
+                                <input id="latitude" class="input" name="latitude" placeholder="Latitude" type="text"
+                                    value="{{ old('latitude') }}" />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
                             <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                                 <label class="form-label max-w-56">
                                     Lokasi Otomatis
                                 </label>
-                                <button class="btn btn-sm text-center btn-info" >
+                                <button class="btn btn-sm text-center btn-info">
                                     <i class="ki-filled ki-map"></i>Ambil Lokasi Saat ini
                                 </button>
                             </div>
                         </div>
+
+
                         <!-- Leaflet Map -->
                         <div id="map" style="height: 400px;"></div>
 
@@ -127,4 +110,4 @@
     </form>
 @endsection
 
-@include('backoffice.config.company.location.include.location-crud-js')
+@include('location.include.location-crud-js')

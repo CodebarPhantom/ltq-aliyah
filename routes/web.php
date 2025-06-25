@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Workforce\EmployeeController;
-use App\Http\Controllers\Web\CompanyController;
+use App\Http\Controllers\Web\LocationController;
 use App\Http\Controllers\Web\EntityController;
 use App\Http\Controllers\Web\Dashboard\DashboardController;
 use App\Http\Controllers\Web\DivisionController;
@@ -266,31 +266,13 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
         Route::put('/{entity}', [EntityController::class, 'update'])->name('update');
     });
 
-    Route::prefix("/company")->as("company.")->group(function () {
-        Route::get('', [CompanyController::class, 'index'])->name('index');
-        Route::get('/create', [CompanyController::class, 'create'])->name('create');
-        Route::post('/', [CompanyController::class, 'store'])->name('store');
-        Route::get('/{company}', [CompanyController::class, 'show'])->name('show');
-        Route::get('/{company}/edit', [CompanyController::class, 'edit'])->name('edit');
-        Route::put('/{company}', [CompanyController::class, 'update'])->name('update');
-    });
-
-    Route::prefix("/division")->as("division.")->group(function () {
-        Route::get('', [DivisionController::class, 'index'])->name('index');
-        Route::get('/create', [DivisionController::class, 'create'])->name('create');
-        Route::post('/', [DivisionController::class, 'store'])->name('store');
-        Route::get('/{division}', [DivisionController::class, 'show'])->name('show');
-        Route::get('/{division}/edit', [DivisionController::class, 'edit'])->name('edit');
-        Route::put('/{division}', [DivisionController::class, 'update'])->name('update');
-    });
-
-    Route::prefix("/departement")->as("departement.")->group(function () {
-        Route::get('', [DepartementController::class, 'index'])->name('index');
-        Route::get('/create', [DepartementController::class, 'create'])->name('create');
-        Route::post('/', [DepartementController::class, 'store'])->name('store');
-        Route::get('/{departement}', [DepartementController::class, 'show'])->name('show');
-        Route::get('/{departement}/edit', [DepartementController::class, 'edit'])->name('edit');
-        Route::put('/{departement}', [DepartementController::class, 'update'])->name('update');
+    Route::prefix("/location")->as("location.")->group(function () {
+        Route::get('', [LocationController::class, 'index'])->name('index');
+        Route::get('/create', [LocationController::class, 'create'])->name('create');
+        Route::post('/', [LocationController::class, 'store'])->name('store');
+        Route::get('/{location}', [LocationController::class, 'show'])->name('show');
+        Route::get('/{location}/edit', [LocationController::class, 'edit'])->name('edit');
+        Route::put('/{location}', [LocationController::class, 'update'])->name('update');
     });
 
     Route::prefix("/permission-groups")->as("permission-groups.")->group(function () {

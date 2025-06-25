@@ -31,7 +31,7 @@ class PermissionController extends MasterController
         $func = function () {
             Gate::authorize('readPolicy', Permission::class);
 
-            $breadcrumbs = ['Perusahaan', 'Hak Akses'];
+            $breadcrumbs = ['Hak Akses'];
             $pageTitle = "Hak Akses";
             $this->data = compact('breadcrumbs', 'pageTitle');
         };
@@ -45,7 +45,7 @@ class PermissionController extends MasterController
         $func = function () {
             Gate::authorize('createPolicy', Permission::class);
 
-            $breadcrumbs = ['Perusahaan', 'Hak Akses', 'Tambah Hak Akses'];
+            $breadcrumbs = ['Hak Akses', 'Tambah Hak Akses'];
             $pageTitle = "Tambah Hak Akses";
             $permissionGroups = $this->permissionGroupService->getAllPermissionGroups();
             $this->data = compact('breadcrumbs', 'pageTitle', 'permissionGroups');
@@ -66,7 +66,7 @@ class PermissionController extends MasterController
             ]);
 
             $this->permissionService->storePermission($data);
-            session()->flash('flashMessageSuccess', 'Task was successful!');
+            $this->messages = ['Permission berhasil ditambahkan!'];
         };
 
         return $this->callFunction($func, null, 'permissions.index');
@@ -77,7 +77,7 @@ class PermissionController extends MasterController
         $func = function () use ($id) {
             Gate::authorize('readPolicy', Permission::class);
 
-            $breadcrumbs = ['Perusahaan', 'Hak Akses', 'Lihat Hak Akses'];
+            $breadcrumbs = ['Hak Akses', 'Lihat Hak Akses'];
             $pageTitle = "Lihat Hak Akses";
             $editPageTitle = "Ubah Hak Akses";
             $permissionGroups = $this->permissionGroupService->getAllPermissionGroups();
@@ -93,7 +93,7 @@ class PermissionController extends MasterController
         $func = function () use ($id) {
             Gate::authorize('updatePolicy', Permission::class);
 
-            $breadcrumbs = ['Perusahaan', 'Hak Akses', 'Ubah Hak Akses'];
+            $breadcrumbs = ['Hak Akses', 'Ubah Hak Akses'];
             $pageTitle = "Ubah Hak Akses";
 
             $permission = $this->permissionService->showPermission($id);
@@ -116,7 +116,8 @@ class PermissionController extends MasterController
             ]);
 
             $this->permissionService->updatePermission($id,$data);
-            session()->flash('flashMessageSuccess', 'Task was successful!');
+            $this->messages = ['Permission berhasil diubah!'];
+
 
 
         };
