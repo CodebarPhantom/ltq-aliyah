@@ -18,6 +18,7 @@ use App\Http\Controllers\Web\MyActivity\MyOvertimeController;
 use App\Http\Controllers\Web\MyActivity\MyPermitController;
 use App\Http\Controllers\Web\Report\ReportEmployeeAttendanceController;
 use App\Http\Controllers\Web\Report\ReportEmployeeShiftController;
+use App\Http\Controllers\Web\User\UserController;
 use App\Http\Controllers\Web\Workforce\EmployeeBusinessTripController;
 use App\Http\Controllers\Web\Workforce\EmployeeLeaveController;
 use App\Http\Controllers\Web\Workforce\EmployeeLoanController;
@@ -303,6 +304,14 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
     });
     //});
 
+    Route::prefix("/users")->as("users.")->group(function () {
+        Route::get('', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('/{users}', [UserController::class, 'show'])->name('show');
+        Route::get('/{users}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::put('/{users}', [UserController::class, 'update'])->name('update');
+    });
 
 
     Route::get('/uploads/{path}', UploadsController::class)->where('path', '.*');

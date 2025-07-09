@@ -38,6 +38,13 @@ return
                 'pathUrl' => ['location*']
             ],
             [
+                'title' => 'User',
+                'icon' => 'ki-filled ki-security-user',
+                'permission' => ['user-read'],
+                'route' => 'users.index',
+                'pathUrl' => ['user*']
+            ],
+            [
                 'title' => 'Roles & Permissions',
                 'icon' => 'ki-filled ki-bank',
                 'permission' => [ 'role-read', 'permission-read', 'permission-group-read'],

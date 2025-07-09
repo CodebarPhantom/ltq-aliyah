@@ -18,12 +18,6 @@ class PermissionSeeder extends Seeder
             'location-delete'
         ]);
 
-        $this->createPermissionGroupWithPermissions('Jama\'ah', [
-            'congregation-read',
-            'congregation-create',
-            'congregation-update',
-            'congregation-delete'
-        ]);
 
         $this->createPermissionGroupWithPermissions('Roles & Permission - Roles', [
             'role-read',
@@ -44,6 +38,13 @@ class PermissionSeeder extends Seeder
             'permission-create',
             'permission-update',
             'permission-delete'
+        ]);
+
+        $this->createPermissionGroupWithPermissions('User', [
+            'user-read',
+            'user-create',
+            'user-update',
+            'user-delete'
         ]);
 
     }

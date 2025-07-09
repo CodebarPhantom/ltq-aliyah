@@ -45,9 +45,9 @@ Route::prefix("/api.")->as("api.")->group(function () {
             Route::post('/signin', [AuthController::class, 'login']);
         });
 
-        Route::prefix("/user")->as("user.")->group(function () {
-            Route::middleware(['auth:sanctum', 'ability:users-create'])->post('', [UserController::class, 'create']);
-        });
+        // Route::prefix("/user")->as("user.")->group(function () {
+        //     Route::middleware(['auth:sanctum', 'ability:users-create'])->post('', [UserController::class, 'create']);
+        // });
 
         Route::get('/server-time', function () {
             return response()->json([
@@ -227,6 +227,10 @@ Route::prefix("/api.")->as("api.")->group(function () {
             Route::prefix('/roles')->as('roles.')->group(function () {
                 Route::get('/datatable', [RoleController::class, 'dataTable'])->name('datatable');
                 Route::get('/get-all-role', [RoleController::class, 'getAllRole'])->name('get-all-role');
+            });
+
+            Route::prefix('/users')->as('users.')->group(function () {
+                Route::get('/datatable', [UserController::class, 'dataTable'])->name('datatable');
             });
         });
     });

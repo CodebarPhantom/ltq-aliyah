@@ -10,6 +10,8 @@ use App\Models\PermissionGroup;
 use App\Policies\PermissionGroupPolicy;
 use App\Models\Role;
 use App\Policies\RolePolicy;
+use App\Models\User;
+use App\Policies\UserPolicy;
 
 
 use Illuminate\Support\ServiceProvider;
@@ -72,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         //Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-        //Gate::policy(User::class, UserPolicy::class);
+        Gate::policy(User::class, UserPolicy::class);
         //Gate::policy(EmployeeLeave::class, MyLeavePolicy::class);
         Gate::policy(Location::class, LocationPolicy::class);
         Gate::policy(Permission::class, PermissionPolicy::class);

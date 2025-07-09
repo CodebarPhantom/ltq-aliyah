@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Congregation;
 use Auth;
 
 class User extends Authenticatable
@@ -26,7 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'congregation_id',
+        'location_id',
         'url_image'
 
     ];
@@ -54,10 +53,34 @@ class User extends Authenticatable
         ];
     }
 
-
-    public function congregation()
+    public function getIsActiveColorAttribute()
     {
-        return $this->hasOne(Congregation::class, 'id', 'congregation_id');
+        switch ($this->is_active) {
+            case 1:
+                return 'bg-success';
+            case 0:
+                return 'bg-danger';
+            default:
+                return 'bg-danger'; // Default color if status is unknown
+        }
+    }
+
+    public function getIsActiveNameAttribute()
+    {
+        switch ($this->is_active) {
+            case 1:
+                return 'Active'; // Human-readable status name for active
+            case 0:
+                return 'Inactive'; // Human-readable status name for non-active
+            default:
+                return 'Unknown'; // Default for unknown status
+        }
+    }
+
+
+    public function location()
+    {
+        return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
     public function latestNotificationAlls()

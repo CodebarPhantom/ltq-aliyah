@@ -19,11 +19,25 @@ class UserController extends MasterController
         $this->userService = $userService;
     }
 
+    public function index()
+    {
+        $func = function () {
+            Gate::authorize('readPolicy', User::class); // is from policy
+
+            $breadcrumbs = ['User'];
+            $pageTitle = "User";
+            $this->data = compact('breadcrumbs', 'pageTitle');
+
+        };
+
+        return $this->callFunction($func, view('user.index'));
+    }
+
     public function create(Request $request)
     {
         $func = function () use ($request) {
 
-           Gate::authorize('create', User::class); // is from policy
+           Gate::authorize('createPolicy', User::class); // is from policy
 
             $data = $request->validate([
                 'name'=> 'required|string',

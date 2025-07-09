@@ -6,7 +6,6 @@ use App\Models\Location;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Permission;
-use App\Models\Congregation;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
