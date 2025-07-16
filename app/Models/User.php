@@ -26,7 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'location_id',
-        'url_image'
+        'url_image',
+        'role_id',
 
     ];
 
@@ -80,7 +81,12 @@ class User extends Authenticatable
 
     public function location()
     {
-        return $this->hasOne(Location::class, 'id', 'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class, 'role_id');
+
     }
 
     public function latestNotificationAlls()

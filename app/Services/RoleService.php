@@ -34,7 +34,7 @@ class RoleService extends MasterService
     public function updateRole($id, array $data)
     {
         $role = Role::where('id',$id)->first();
-        $role->syncPermissions($data['permissions']);
+        $role->syncPermissions($data['permissions'] ?? []);
         $role->update([
             'name' => $data['name'],
             'guard_name' => 'web',

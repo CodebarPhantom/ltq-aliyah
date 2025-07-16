@@ -29,6 +29,7 @@ return
 
             [
                 'header' => 'Administrator',
+                'permission' => ['location-read'],
             ],
             [
                 'title' => 'Lokasi',
@@ -49,7 +50,7 @@ return
                 'icon' => 'ki-filled ki-bank',
                 'permission' => [ 'role-read', 'permission-read', 'permission-group-read'],
                 'route' => null,
-                'pathUrl' => [ 'roles*', 'company*', 'permission*'],
+                'pathUrl' => [ 'roles*', 'permission*'],
                 'children' => [
 
                     [

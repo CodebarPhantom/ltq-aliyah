@@ -4,7 +4,7 @@
     <!-- Container -->
     {{-- @include('backoffice.config.company.partials.submenu') --}}
     <!-- Container -->
-    <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <div class="container-fixed">
@@ -65,7 +65,20 @@
                         </div>
                         <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                             <label class="form-label max-w-56">
-                                Password (Kosongkan jika tidak mengganti password)
+                                Role
+                            </label>
+                            <select class="select" name="role_id" required>
+                                <option value="" selected>--- Silahkan Pilih ---</option>
+                                @foreach ($data['roles'] as $role)
+                                    <option value="{{ $role['id'] }}" @selected(old('role_id', $data['user']['role_id'] ?? '') == $role['id'])>
+                                        {{ $role['name'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                            <label class="form-label max-w-56">
+                                Password
                             </label>
                             <input class="input" name="password" placeholder="Password" id="password" type="password" />
                         </div>

@@ -61,6 +61,13 @@
                                                 </span>
                                             </span>
                                         </th>
+                                        <th class="text-center" data-datatable-column="role">
+                                            <span class="sort">
+                                                <span class="sort-label">
+                                                    Role
+                                                </span>
+                                            </span>
+                                        </th>
                                         <th class="text-center" data-datatable-column="is_active">
                                             <span class="sort">
                                                 <span class="sort-label">
@@ -139,6 +146,15 @@
                     title: 'lokasi',
                     render: (item, row, context) => {
                         return ` ${row.location}`;
+                    },
+                    createdCell(cell) {
+                        cell.classList.add('text-center');
+                    },
+                },
+                role:{
+                    title: 'Role',
+                    render: (item, row, context) => {
+                        return ` ${row.role}`;
                     },
                     createdCell(cell) {
                         cell.classList.add('text-center');

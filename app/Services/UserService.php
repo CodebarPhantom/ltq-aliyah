@@ -13,17 +13,68 @@ class UserService extends MasterService
 {
     public function createUser(array $data)
     {
-        return  User::create([
+        $role = Role::find($data['role_id']);
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'location_id' => $data['location_id']
+            'location_id' => $data['location_id'],
+            'role_id' => $data['role_id']
         ]);
+        $user->syncRoles([$role]);
+
+        return;
     }
+
+    // Service: UserService.php
+
+    /**
+     * Update user dengan ID tertentu
+     *
+     * @param  int    $id
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    public function updateUser(int $id, array $data)
+    {
+        $user = User::findOrFail($id);
+        $role = Role::find($data['role_id']);
+
+
+        // Kalau ada password baru, hash dulu
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        // Siapkan payload update dasar
+        $updatePayload = [
+            'name'        => $data['name'],
+            'email'       => $data['email'],
+            'location_id' => $data['location_id'],
+            'is_active'   => $data['is_active'],
+            'role_id'     => $data['role_id']
+        ];
+
+        // Jika ada password (hash sudah diset), tambahkan
+        if (isset($data['password'])) {
+            $updatePayload['password'] = $data['password'];
+        }
+
+        // Lakukan update
+        $user->update($updatePayload);
+
+        // Sync ulang role
+        $user->syncRoles([$role]);
+
+        return $user;
+    }
+
+
 
     public function showUser($id)
     {
-        return User::with(['location'])->where('id', $id)->first();
+        return User::with(['location', 'role'])->where('id', $id)->first();
     }
 
     public function showUserByEmployeeId($id)

@@ -21,7 +21,7 @@ class UserController extends MasterController
     }
 
      public function dataTable( Request $request){
-        Gate::authorize('readPolicy', Role::class);
+        Gate::authorize('readPolicy', User::class);
 
         $search = $request->input('search', ''); // Search query
         $pageSize = $request->input('size', 10); // Default to 10
@@ -39,7 +39,7 @@ class UserController extends MasterController
         if (!in_array($sortOrder, $allowedSortOrders)) {
             $sortOrder = 'asc'; // Fallback to default
         }
-        $users = User::with(['location'])->where(function ($query) use ($search) {
+        $users = User::with(['location','role'])->where(function ($query) use ($search) {
             if (!empty($search)) {
                 $query->whereRaw('name ILIKE ?', ['%'.$search.'%']);
             }
@@ -47,13 +47,13 @@ class UserController extends MasterController
         ->orderBy($sortField, $sortOrder)
         ->paginate($pageSize);
 
-        Log::debug('UserController dataTable', [
-            'search' => $search,
-            'pageSize' => $pageSize,
-            'sortField' => $sortField,
-            'sortOrder' => $sortOrder,
-            'totalCount' => $users,
-        ]);
+        // Log::debug('UserController dataTable', [
+        //     'search' => $search,
+        //     'pageSize' => $pageSize,
+        //     'sortField' => $sortField,
+        //     'sortOrder' => $sortOrder,
+        //     'totalCount' => $users,
+        // ]);
 
         $userData = $users->map(function($user) {
             return [
@@ -64,6 +64,7 @@ class UserController extends MasterController
                 'is_active'=> $user->is_active,
                 'is_active_name'=> $user->is_active_name,
                 'is_active_color' => $user->is_active_color, // Accessor used here
+                'role' => $user->role->name
             ];
         });
 
