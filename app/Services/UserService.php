@@ -23,7 +23,7 @@ class UserService extends MasterService
 
     public function showUser($id)
     {
-        return User::where('id', $id)->first();
+        return User::with(['location'])->where('id', $id)->first();
     }
 
     public function showUserByEmployeeId($id)
