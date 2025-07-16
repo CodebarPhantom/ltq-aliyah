@@ -32,7 +32,7 @@ class LocationService extends MasterService
 
         return $location;
     }
-    public function getAllLocation()
+    public function getAllLocations()
 
     {
         return Location::active()->get();

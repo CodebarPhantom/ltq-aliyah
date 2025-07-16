@@ -16,7 +16,8 @@ class UserService extends MasterService
         return  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'location_id' => $data['location_id']
         ]);
     }
 
