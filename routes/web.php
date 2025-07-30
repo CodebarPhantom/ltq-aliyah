@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\PermissionController;
 use App\Http\Controllers\Web\PermissionGroupController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\UploadsController;
+use App\Http\Controllers\Web\FormEntryController;
 use App\Http\Controllers\Web\MyActivity\MyAttendanceController;
 use App\Http\Controllers\Web\MyActivity\MyBusinessTripController;
 use App\Http\Controllers\Web\MyActivity\MyLeaveController;
@@ -311,6 +312,11 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
         Route::get('/{users}', [UserController::class, 'show'])->name('show');
         Route::get('/{users}/edit', [UserController::class, 'edit'])->name('edit');
         Route::put('/{users}', [UserController::class, 'update'])->name('update');
+    });
+
+    Route::prefix("/forms")->as("forms.")->group(function () {
+        Route::get('/{formCode}/create', [FormEntryController::class, 'create'])->name('create');
+
     });
 
 
