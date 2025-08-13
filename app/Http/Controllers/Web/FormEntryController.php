@@ -7,19 +7,21 @@ use App\Models\Surah;
 use Illuminate\Http\Request;
 use App\Services\FormService;
 use App\Services\SurahService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Log;
 
 class FormEntryController extends MasterController
 {
-     protected $formService, $surahService;
+     protected $formService, $surahService, $userService;
 
 
     // Inject multiple services through the constructor
-    public function __construct(FormService $formService, SurahService $surahService)
+    public function __construct(FormService $formService, SurahService $surahService, UserService $userService)
     {
         parent::__construct();
         $this->formService = $formService;
         $this->surahService = $surahService;
+        $this->userService = $userService;
 
     }
 
@@ -29,11 +31,12 @@ class FormEntryController extends MasterController
 
         $func = function () use ($formCode) {
         //     // Authorization logic can be added here if needed
-            $breadcrumbs = ['Form Entry', 'Create'];
             $formData = $this->formService->getFormData($formCode);
-            $surahs = $this->surahService->getAllSurahs();
+            $breadcrumbs = ['Form Entry', 'Create', $formData['name']];
+            $surahs = $this->surahService->getAllSurahForSelect();
             $pageTitle = $formData['name'];
-            $this->data = compact('breadcrumbs', 'pageTitle', 'formCode','formData','surahs');
+            $users = $this->userService->getAllUserForSelect();
+            $this->data = compact('breadcrumbs', 'pageTitle', 'formCode','formData','surahs','users');
         };
 
         return $this->callFunction($func, view('form.entry.create'));

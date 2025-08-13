@@ -127,4 +127,22 @@ class UserService extends MasterService
 
         $user->syncRoles([$role]);
     }
+
+    public function getAllUsers()
+    {
+        return User::get();
+    }
+
+    public function getAllUserForSelect()
+    {
+        return User::active()
+            ->orderBy('name', 'asc')
+            ->get()
+            ->map(function ($division) {
+                return [
+                    'id' => $division->id,
+                    'label' => $division->name,
+                ];
+            });
+    }
 }

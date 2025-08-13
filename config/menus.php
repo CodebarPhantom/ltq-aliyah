@@ -26,7 +26,13 @@ return
             //     'route' => 'my-activity.my-attendance.index',
             //     'pathUrl' => ['my-activity/my-attendance*']
             // ],
-
+            [
+                'title' => 'Rekapitulasi Kesalahan Baca',
+                'icon' => 'ki-filled ki-book',
+                'permission' => null,
+                'route' => 'forms.create.rekapitulasi-kesalahan-bacaan',
+                'pathUrl' => ['forms/rekapitulasi-kesalahan-bacaan*']
+            ],
             [
                 'header' => 'Administrator',
                 'permission' => ['location-read'],

@@ -89,6 +89,11 @@ class User extends Authenticatable
 
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active',true);
+    }
+
     public function latestNotificationAlls()
     {
         //$employeeView = Employee::where('id', $user->employee_id)->first();

@@ -208,7 +208,6 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
             Route::get('/{loan}/edit', [EmployeeLoanController::class, 'edit'])->name('edit');
             Route::put('/{loan}', [EmployeeLoanController::class, 'update'])->name('update');
             Route::put('/{loan}/accelerated-repayment', [EmployeeLoanController::class, 'acceleratedRepayment'])->name('accelerated-repayment');
-
         });
     });
 
@@ -315,8 +314,13 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
     });
 
     Route::prefix("/forms")->as("forms.")->group(function () {
-        Route::get('/{formCode}/create', [FormEntryController::class, 'create'])->name('create');
+        Route::get('/{formCode}/create', [FormEntryController::class, 'create'])
+            ->name('create');
 
+        // Alias khusus untuk form tertentu
+        Route::get('/rekapitulasi-kesalahan-bacaan/create', [FormEntryController::class, 'create'])
+            ->defaults('formCode', 'rekapitulasi-kesalahan-bacaan')
+            ->name('create.rekapitulasi-kesalahan-bacaan');
     });
 
 
