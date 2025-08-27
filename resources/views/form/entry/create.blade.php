@@ -270,8 +270,10 @@
                     .then(response => {
                         // Handle success
                         console.log('Success:', response.data.data);
+                        const successMessage =  'Data berhasil disimpan!';
+                        alert(successMessage);
                         // Redirect or show success message
-                        //window.location.href = response.data.data.redirect || '{{ route('users.index') }}';
+                        window.location.href = response.data.data.redirect || '{{ route('index') }}';
                     })
                     .catch(error => {
                         // Handle error

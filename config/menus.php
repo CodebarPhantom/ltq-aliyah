@@ -7,10 +7,7 @@ return
     [
         'main_menu' => [
             [
-                'header' => 'Beranda',
-            ],
-            [
-                'title' => 'Dashboard',
+                'title' => 'Beranda',
                 'icon' => 'ki-filled ki-element-11',
                 'permission' => null,
                 'route' => 'index',
@@ -26,6 +23,9 @@ return
             //     'route' => 'my-activity.my-attendance.index',
             //     'pathUrl' => ['my-activity/my-attendance*']
             // ],
+            [
+                'header' => 'Musyrif',
+            ],
             [
                 'title' => 'Rekapitulasi Kesalahan Baca',
                 'icon' => 'ki-filled ki-book',

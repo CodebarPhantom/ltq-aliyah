@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Workforce\EmployeeController;
 use App\Http\Controllers\Web\LocationController;
 use App\Http\Controllers\Web\EntityController;
-use App\Http\Controllers\Web\Dashboard\DashboardController;
+use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DivisionController;
 use App\Http\Controllers\Web\DepartementController;
 use App\Http\Controllers\Web\PermissionController;

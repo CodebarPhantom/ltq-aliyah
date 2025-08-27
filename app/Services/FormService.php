@@ -1,15 +1,22 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\Form;
 
 class FormService
 {
+
+    public function getAllForms()
+    {
+        return Form::with(['lastEntryHeader','lastEntryHeader.approver'])->get();
+    }
+
     public function getFormData(string $formCode)
     {
         $form = Form::with(['categories.questions'])->where('form_code', $formCode)->first();
 
-        $sections = $form->categories->map(function($cat) {
+        $sections = $form->categories->map(function ($cat) {
             return [
                 'category_id' => $cat->id,
                 'title'       => $cat->name,
@@ -22,10 +29,12 @@ class FormService
         })->toArray();
 
         return [
-        'id' => $form->id,
-        'form_code' => $form->form_code,
-        'name'      => $form->name,
-        'sections'  => $sections,
-    ];
+            'id' => $form->id,
+            'form_code' => $form->form_code,
+            'name'      => $form->name,
+            'sections'  => $sections,
+        ];
     }
+
+
 }
