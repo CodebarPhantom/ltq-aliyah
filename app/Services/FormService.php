@@ -22,6 +22,7 @@ class FormService
         })->toArray();
 
         return [
+        'id' => $form->id,
         'form_code' => $form->form_code,
         'name'      => $form->name,
         'sections'  => $sections,

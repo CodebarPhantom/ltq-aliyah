@@ -4,9 +4,11 @@
     <!-- Container -->
     {{-- @include('backoffice.config.company.partials.submenu') --}}
     <!-- Container -->
-    <form id="tahsin-form" action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+    <form id="tahsin-form" action="{{ route('forms.store.rekapitulasi-kesalahan-bacaan') }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         @method('POST')
+        <input type="hidden" name="form_id" value="{{ $data['formData']['id'] }}">
         <div class="container-fixed">
             <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
                 <div class="flex flex-col justify-center gap-2">
@@ -56,18 +58,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tanggal -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Tanggal
-                                </label>
-                                <input class="input w-full sm:flex-1" name="date" placeholder="Tanggal" type="date"
-                                    value="{{ old('date', $data['user']['date'] ?? date('Y-m-d')) }}" />
-                            </div>
                             <!-- Surah -->
                             <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
                                 <label class="form-label w-full sm:w-32">
-                                    Surat
+                                    Surah
                                 </label>
                                 <div class="relative w-full sm:flex-1 combobox" data-options='@json($data['surahs'])'
                                     data-multiple="false">
@@ -83,31 +77,48 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Tanggal -->
+                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
+                                <label class="form-label w-full sm:w-32">
+                                    Tanggal
+                                </label>
+                                <input class="input w-full sm:flex-1" name="entry_date" placeholder="Tanggal" type="date"
+                                    value="{{ old('entry_date', $data['user']['entry_date'] ?? date('Y-m-d')) }}" />
+                            </div>
                             <!-- Halaman -->
                             <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
                                 <label class="form-label w-full sm:w-32">
                                     Halaman
                                 </label>
-                                <input class="input w-full sm:flex-1" name="halaman" placeholder="Halaman" type="number"
-                                    min="1" value="{{ old('halaman', $data['user']['halaman'] ?? '') }}" />
+                                <input class="input w-full sm:flex-1" name="page" placeholder="Halaman" type="number"
+                                    min="1" value="{{ old('page', $data['user']['page'] ?? '') }}" />
                             </div>
                             <!-- Ayat Dari -->
                             <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
                                 <label class="form-label w-full sm:w-32">
                                     Ayat Dari
                                 </label>
-                                <input class="input w-full sm:flex-1" name="ayat_dari" placeholder="Ayat dari"
+                                <input class="input w-full sm:flex-1" name="verse_start" placeholder="Ayat dari"
                                     type="number" min="1"
-                                    value="{{ old('ayat_dari', $data['user']['ayat_dari'] ?? '') }}" />
+                                    value="{{ old('verse_start', $data['user']['verse_start'] ?? '') }}" />
                             </div>
                             <!-- Ayat Sampai -->
                             <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
                                 <label class="form-label w-full sm:w-32">
                                     Ayat Sampai
                                 </label>
-                                <input class="input w-full sm:flex-1" name="ayat_sampai" placeholder="Ayat sampai"
+                                <input class="input w-full sm:flex-1" name="verse_end" placeholder="Ayat sampai"
                                     type="number" min="1"
-                                    value="{{ old('ayat_sampai', $data['user']['ayat_sampai'] ?? '') }}" />
+                                    value="{{ old('verse_end', $data['user']['verse_end'] ?? '') }}" />
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                                <label class="form-label max-w-32">
+                                    Catatan
+                                </label>
+                                <textarea class="textarea" name="notes" placeholder="Catatan Tambahan" rows="3"></textarea>
                             </div>
                         </div>
                     </div>
@@ -258,9 +269,9 @@
                     })
                     .then(response => {
                         // Handle success
-                        console.log('Success:', response.data);
+                        console.log('Success:', response.data.data);
                         // Redirect or show success message
-                        window.location.href = response.data.redirect || '{{ route('users.index') }}';
+                        //window.location.href = response.data.data.redirect || '{{ route('users.index') }}';
                     })
                     .catch(error => {
                         // Handle error

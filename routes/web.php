@@ -316,11 +316,17 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
     Route::prefix("/forms")->as("forms.")->group(function () {
         Route::get('/{formCode}/create', [FormEntryController::class, 'create'])
             ->name('create');
+        Route::post('/{formCode}/store', [FormEntryController::class, 'store'])
+            ->name('store');
 
         // Alias khusus untuk form tertentu
         Route::get('/rekapitulasi-kesalahan-bacaan/create', [FormEntryController::class, 'create'])
             ->defaults('formCode', 'rekapitulasi-kesalahan-bacaan')
             ->name('create.rekapitulasi-kesalahan-bacaan');
+
+        Route::get('/rekapitulasi-kesalahan-bacaan/store', [FormEntryController::class, 'store'])
+            ->defaults('formCode', 'rekapitulasi-kesalahan-bacaan')
+            ->name('store.rekapitulasi-kesalahan-bacaan');
     });
 
 
