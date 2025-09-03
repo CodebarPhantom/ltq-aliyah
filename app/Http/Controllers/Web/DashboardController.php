@@ -37,7 +37,7 @@ class DashboardController extends MasterController
             $this->data = compact('breadcrumbs','pageTitle','forms');
         };
 
-        return $this->callFunction($func, view('backoffice.dashboard.index'));
+        return $this->callFunction($func, view('dashboard.index'));
 
     }
 }

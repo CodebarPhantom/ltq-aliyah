@@ -9,7 +9,7 @@ use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\FormEntryController;
-
+use App\Http\Controllers\Api\V1\SummaryController;
 
 // Route::post('/signin', function (Request $request) {
 //     return $request->user();
@@ -64,10 +64,13 @@ Route::prefix("/api.")->as("api.")->group(function () {
                 Route::post('/{formCode}/store', [FormEntryController::class, 'store'])
                     ->name('store');
 
-                // Alias khusus untuk form tertentu
                 Route::get('/rekapitulasi-kesalahan-bacaan/store', [FormEntryController::class, 'store'])
                     ->defaults('formCode', 'rekapitulasi-kesalahan-bacaan')
                     ->name('store.rekapitulasi-kesalahan-bacaan');
+            });
+
+            Route::prefix('/summaries')->as('summaries.')->group(function () {
+                Route::get('/datatable', [SummaryController::class, 'dataTable'])->name('datatable');
             });
         });
     });

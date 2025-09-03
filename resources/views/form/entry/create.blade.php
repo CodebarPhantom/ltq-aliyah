@@ -1,5 +1,6 @@
 @extends('layouts.main')
 
+
 @section('content')
     <!-- Container -->
     {{-- @include('backoffice.config.company.partials.submenu') --}}
@@ -10,7 +11,7 @@
         @method('POST')
         <input type="hidden" name="form_id" value="{{ $data['formData']['id'] }}">
         <div class="container-fixed">
-            <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+            <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-2">
                 <div class="flex flex-col justify-center gap-2">
                     <h1 class="text-xl font-bold leading-none text-gray-900">
                         {{ $data['pageTitle'] }}
@@ -36,120 +37,120 @@
 
         <div class="container-fixed">
             <div class="grid gap-5 mx-auto">
-                <div class="card pb-2.5">
-                    <div class="card-body grid gap-5">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="card pb-2">
+                    <div class="card-body grid gap-3">
+
+                        <!-- Baris 2: Tanggal (1 kolom penuh) -->
+                        <div class="flex flex-col gap-1">
+                            <label class="form-label text-sm">Tanggal</label>
+                            <input class="input w-full px-3 py-1.5 text-sm" name="entry_date" type="date"
+                                value="{{ old('entry_date', $data['user']['entry_date'] ?? date('Y-m-d')) }}" />
+                        </div>
+
+                        <!-- Baris 1: Nama & Surah (2 kolom) -->
+                        <div class="grid grid-cols-2 gap-3">
                             <!-- Nama -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Nama
-                                </label>
-                                <div class="relative w-full sm:flex-1 combobox" data-options='@json($data['users'])'
+                            <div class="flex flex-col gap-1">
+                                <label class="form-label text-sm">Nama</label>
+                                <div class="relative combobox" data-options='@json($data['users'])'
                                     data-multiple="false">
                                     <div
-                                        class="pill-container flex items-center w-full px-2 py-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
+                                        class="pill-container flex items-center w-full px-2 py-1.5 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
                                         <input type="text" placeholder="Cari Peserta"
                                             class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
                                     </div>
                                     <input id="user_id" type="hidden" class="selected-data" name="user_id" />
                                     <div
-                                        class="dropdown-menu absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
-                                        <div class="options-container max-h-40 overflow-y-auto"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Surah -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Surah
-                                </label>
-                                <div class="relative w-full sm:flex-1 combobox" data-options='@json($data['surahs'])'
-                                    data-multiple="false">
-                                    <div
-                                        class="pill-container flex items-center w-full px-2 py-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
-                                        <input type="text" placeholder="Cari Surat"
-                                            class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
-                                    </div>
-                                    <input id="surah_id" type="hidden" class="selected-data" name="surah_id" />
-                                    <div
-                                        class="dropdown-menu absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                        class="dropdown-menu absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
                                         <div class="options-container max-h-40 overflow-y-auto"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Tanggal -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Tanggal
-                                </label>
-                                <input class="input w-full sm:flex-1" name="entry_date" placeholder="Tanggal" type="date"
-                                    value="{{ old('entry_date', $data['user']['entry_date'] ?? date('Y-m-d')) }}" />
-                            </div>
-                            <!-- Halaman -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Halaman
-                                </label>
-                                <input class="input w-full sm:flex-1" name="page" placeholder="Halaman" type="number"
-                                    min="1" value="{{ old('page', $data['user']['page'] ?? '') }}" />
-                            </div>
-                            <!-- Ayat Dari -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Ayat Dari
-                                </label>
-                                <input class="input w-full sm:flex-1" name="verse_start" placeholder="Ayat dari"
-                                    type="number" min="1"
-                                    value="{{ old('verse_start', $data['user']['verse_start'] ?? '') }}" />
-                            </div>
-                            <!-- Ayat Sampai -->
-                            <div class="flex flex-col sm:flex-row sm:items-baseline gap-2.5">
-                                <label class="form-label w-full sm:w-32">
-                                    Ayat Sampai
-                                </label>
-                                <input class="input w-full sm:flex-1" name="verse_end" placeholder="Ayat sampai"
-                                    type="number" min="1"
-                                    value="{{ old('verse_end', $data['user']['verse_end'] ?? '') }}" />
+                            <!-- Surah -->
+                            <div class="flex flex-col gap-1">
+                                <label class="form-label text-sm">Surah</label>
+                                <div class="relative combobox" data-options='@json($data['surahs'])'
+                                    data-multiple="false">
+                                    <div
+                                        class="pill-container flex items-center w-full px-2 py-1.5 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
+                                        <input type="text" placeholder="Cari Surat"
+                                            class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
+                                    </div>
+                                    <input id="surah_id" type="hidden" class="selected-data" name="surah_id" />
+                                    <div
+                                        class="dropdown-menu absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                        <div class="options-container max-h-40 overflow-y-auto"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="w-full">
-                            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                <label class="form-label max-w-32">
-                                    Catatan
-                                </label>
-                                <textarea class="textarea" name="notes" placeholder="Catatan Tambahan" rows="3"></textarea>
+
+                        <!-- Baris 3: Halaman, Ayat Dari, Ayat Sampai (3 kolom) -->
+                        <div class="grid grid-cols-3 gap-3">
+                            <!-- Halaman -->
+                            <div class="flex flex-col gap-1">
+                                <label class="form-label text-sm">Halaman</label>
+                                <input class="input w-full px-3 py-1.5 text-sm" name="page" type="number" min="1"
+                                    value="{{ old('page', $data['user']['page'] ?? '') }}" />
                             </div>
+
+                            <!-- Ayat Dari -->
+                            <div class="flex flex-col gap-1">
+                                <label class="form-label text-sm">Dari Ayat</label>
+                                <input class="input w-full px-3 py-1.5 text-sm" name="verse_start" type="number"
+                                    min="1" value="{{ old('verse_start', $data['user']['verse_start'] ?? '') }}" />
+                            </div>
+
+                            <!-- Ayat Sampai -->
+                            <div class="flex flex-col gap-1">
+                                <label class="form-label text-sm">Sampai Ayat</label>
+                                <input class="input w-full px-3 py-1.5 text-sm" name="verse_end" type="number"
+                                    min="1" value="{{ old('verse_end', $data['user']['verse_end'] ?? '') }}" />
+                            </div>
+                        </div>
+
+                        <!-- Baris 4: Catatan (2 baris) -->
+                        <div class="flex flex-col gap-1">
+                            <label class="form-label text-sm">Catatan</label>
+                            <textarea class="textarea w-full px-3 py-1.5 text-sm" name="notes" placeholder="Catatan Tambahan" rows="2"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     @foreach ($data['formData']['sections'] as $section)
-                        <details class="border border-white-200 rounded-lg">
+                        <details class="border border-gray-200 rounded-lg mb-3 overflow-hidden">
                             <summary
-                                class="cursor-pointer bg-white-100 px-6 py-4 font-semibold text-gray-800 flex justify-between items-center">
+                                class="cursor-pointer bg-gray-50 px-4 py-3 font-semibold text-gray-800 flex justify-between items-center">
                                 <span>{{ $section['title'] }}</span>
-                                <svg class="w-5 h-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-5 h-5 text-gray-600 transition-transform duration-300"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 9l-7 7-7-7" />
                                 </svg>
                             </summary>
-                            <div class="p-4 bg-white grid grid-cols-1 gap-4">
+                            <div class="p-3 bg-white">
                                 @foreach ($section['questions'] as $question)
-                                    <div class="flex flex-col items-center gap-3 py-2">
-                                        <span class="text-gray-700 text-center w-full">{{ $question['text'] }}</span>
-                                        <div class="flex items-center justify-between w-full max-w-xs">
+                                    <div
+                                        class="flex items-start justify-between py-2 border-b border-gray-100 last:border-0">
+                                        <!-- Teks pertanyaan di kiri -->
+                                        <div class="flex-1 pr-4 min-w-0">
+                                            <span class="text-gray-700 text-sm">{{ $question['text'] }}</span>
+                                        </div>
+
+                                        <!-- Kontrol di kanan -->
+                                        <div class="flex items-center gap-2 flex-shrink-0">
                                             <button type="button"
-                                                class="w-14 h-14 flex items-center justify-center btn-warning text-white rounded-full hover:bg-yellow-600 active:bg-yellow-700 transition-colors decrement-btn text-2xl font-bold"
+                                                class="w-8 h-8 flex items-center justify-center btn-warning text-white rounded-full hover:bg-yellow-600 active:bg-yellow-700 transition-colors decrement-btn text-lg font-bold"
                                                 data-question-id="{{ $question['question_id'] }}">
                                                 -
                                             </button>
                                             <input type="number" min="0" step="1"
-                                                class="w-16 h-14 flex items-center justify-center text-2xl font-bold text-gray-700 count-input bg-gray-100 rounded-lg text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                                class="w-10 h-8 flex items-center justify-center text-sm font-bold text-gray-700 count-input bg-gray-100 rounded-lg text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                                 data-question-id="{{ $question['question_id'] }}" value="0" />
                                             <button type="button"
-                                                class="w-14 h-14 flex items-center justify-center btn-success text-white rounded-full hover:bg-green-600 active:bg-green-700 transition-colors increment-btn text-2xl font-bold"
+                                                class="w-8 h-8 flex items-center justify-center btn-success text-white rounded-full hover:bg-green-600 active:bg-green-700 transition-colors increment-btn text-lg font-bold"
                                                 data-question-id="{{ $question['question_id'] }}">
                                                 +
                                             </button>
@@ -270,7 +271,7 @@
                     .then(response => {
                         // Handle success
                         console.log('Success:', response.data.data);
-                        const successMessage =  'Data berhasil disimpan!';
+                        const successMessage = 'Data berhasil disimpan!';
                         alert(successMessage);
                         // Redirect or show success message
                         window.location.href = response.data.data.redirect || '{{ route('index') }}';

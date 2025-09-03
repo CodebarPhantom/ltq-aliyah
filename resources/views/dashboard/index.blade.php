@@ -22,29 +22,12 @@
             <p class="text-gray-700 text-2sm font-normal">
                 Selamat Datang {{ Auth::User()->name }}
             </p>
-            <div class="mt-2 flex items-center text-sm text-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                <span>{{ count($data['forms']) }} Form Tersedia</span>
-            </div>
-        </div>
-
-        <!-- Forms Header -->
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold text-gray-800">Form Tersedia</h2>
-            <div class="text-sm text-gray-500">
-                <span class="hidden sm:inline">Klik pada form untuk mengisi</span>
-                <span class="sm:hidden">Klik untuk mengisi</span>
-            </div>
         </div>
 
         <!-- Forms Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             @foreach ($data['forms'] as $form)
-                <a href="#" class="group block">
+                <a href="{{ route('summaries.index',$form->form_code) }}" class="group block">
                     <div
                         class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full flex flex-col transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                         <!-- Card Header with Icon -->
@@ -85,13 +68,13 @@
                             </div>
                             <div class="flex items-center text-sm text-gray-600">
                                 <i class="ki-filled ki-user-tick mr-1.5 text-gray-700"></i>
-                                <span>Diperiksa Musyrif: {{ $form->lastEntryHeader?->approver?->name ?? '-' }}</span>
+                                <span>Diperiksa Oleh: {{ $form->lastEntryHeader?->approver?->name ?? '-' }}</span>
                             </div>
                         </div>
 
                         <!-- Card Footer -->
                         <div class="px-5 py-3 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
-                            <span class="text-xs font-medium text-gray-500">Form #{{ $form->id }}</span>
+                            <span class="text-xs font-medium text-gray-500"></span>
                             <span
                                 class="inline-flex items-center text-xs font-medium text-blue-600 group-hover:text-blue-800">
                                 Lihat Ringkasan
