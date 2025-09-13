@@ -107,7 +107,8 @@
 @push('javascript')
     <!-- Begin - Define Route -->
     <script type="text/javascript">
-        const showRoute = "{{ route('users.show', ':id') }}";
+        const showRoute = "{{ route('summaries.show', [':formCode', ':entryId']) }}";
+        const formCode = "{{$data['formCode']  }}"
     </script>
     <!-- End - Define Route -->
 
@@ -134,7 +135,7 @@
                                 </div>
                             </div>
                         `;
-                                        },
+                    },
                     createdCell(cell) {
                         cell.classList.add('text-center');
                     },
@@ -185,7 +186,10 @@
                     title: 'Action',
                     render: (item, row, context) => {
 
-                        const showUrl = showRoute.replace(':id', row.id);
+                        const showUrl = showRoute
+                            .replace(':formCode', encodeURIComponent(formCode))
+                            .replace(':entryId', encodeURIComponent(row.id));
+
 
                         return `
 

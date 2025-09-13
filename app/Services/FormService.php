@@ -12,6 +12,11 @@ class FormService
         return Form::with(['lastEntryHeader','lastEntryHeader.approver'])->get();
     }
 
+    public function getForm(string $formCode)
+    {
+       return Form::where('form_code', $formCode)->first();
+    }
+
     public function getFormData(string $formCode)
     {
         $form = Form::with(['categories.questions'])->where('form_code', $formCode)->first();

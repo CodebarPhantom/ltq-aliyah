@@ -33,6 +33,11 @@ class EntryHeader extends Model
         return $this->belongsTo(User::class, 'approver_id');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+
+    }
+
     public function getFormattedEntryDateAttribute(): string
     {
         return Carbon::parse($this->entry_date)->format('d M y');

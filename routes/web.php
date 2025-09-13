@@ -81,6 +81,8 @@ Route::middleware(['auth'/*, 'verified'*/])->group(function () {
 
     Route::prefix("/summaries")->as("summaries.")->group(function () {
         Route::get('{formCode}', [SummaryController::class, 'index'])->name('index');
+        Route::get('{formCode}/{entryId}', [SummaryController::class, 'show'])->name('show');
+
     });
 
     Route::get('/uploads/{path}', UploadsController::class)->where('path', '.*');
