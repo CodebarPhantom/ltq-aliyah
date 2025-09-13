@@ -26,18 +26,26 @@ class SummaryController extends MasterController
         $sortOrder = $request->input('sortOrder', 'desc'); // Default sort order
 
 
-        $entryHeaders = EntryHeader::with(['surah', 'approver','details'])
+        $mapEntryHeaders = EntryHeader::with(['surah', 'approver', 'details'])
             ->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->paginate($pageSize);
-        // Prepare the response
+
+        // Tambahkan atribut total_errors ke setiap item tanpa mengubah struktur asli
+        $mapEntryHeaders->getCollection()->transform(function ($item) {
+            $item->total_errors = $item->details->sum(function ($detail) {
+                return (int) $detail->string_value;
+            });
+            return $item;
+        });
+
         return response()->json([
-            'page' => $entryHeaders->currentPage(),
-            'pageCount' => $entryHeaders->lastPage(),
+            'page' => $mapEntryHeaders->currentPage(),
+            'pageCount' => $mapEntryHeaders->lastPage(),
             'sortField' => $sortField,
             'sortOrder' => $sortOrder,
-            'totalCount' => $entryHeaders->total(),
-            'data' =>  $entryHeaders->items(),
+            'totalCount' => $mapEntryHeaders->total(),
+            'data' => $mapEntryHeaders->items(),
         ]);
     }
 }

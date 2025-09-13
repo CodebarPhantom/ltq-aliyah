@@ -129,7 +129,7 @@
                         return `
                             <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
                                 <div class="font-semibold text-gray-800">${row.formatted_entry_date}</div>
-                                <div class="text-xs text-gray-500">
+                                <div class="text-xs text-gray-700">
                                     <i class="ki-filled ki-user-tick mr-1"></i>${row.approver.name}
                                 </div>
                             </div>
@@ -161,6 +161,9 @@
                                     <i class="fas fa-hashtag mr-1"></i>
                                     Ayat ${row.verse_start}-${row.verse_end}
                                 </span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                ${row.total_errors}  Kesalahan
                             </div>
                         </div>
                     `;

@@ -23,20 +23,21 @@ return
             //     'route' => 'my-activity.my-attendance.index',
             //     'pathUrl' => ['my-activity/my-attendance*']
             // ],
-            [
-                'header' => 'Musyrif',
-            ],
+            // [
+            //     'header' => 'Musyrif',
+            //     'permission' => ['evaluation-create'],
+            // ],
             [
                 'title' => 'Rekapitulasi Kesalahan Baca',
                 'icon' => 'ki-filled ki-book',
-                'permission' => null,
+                'permission' => ['evaluation-create'],
                 'route' => 'forms.create.rekapitulasi-kesalahan-bacaan',
                 'pathUrl' => ['forms/rekapitulasi-kesalahan-bacaan*']
             ],
-            [
-                'header' => 'Administrator',
-                'permission' => ['location-read'],
-            ],
+            // [
+            //     'header' => 'Administrator',
+            //     'permission' => ['location-read','user-read','role-read','permission-read'],
+            // ],
             [
                 'title' => 'Lokasi',
                 'icon' => 'ki-filled ki-geolocation',
