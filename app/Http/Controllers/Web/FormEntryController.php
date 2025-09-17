@@ -94,9 +94,9 @@ class FormEntryController extends MasterController
                 $this->entryDetailService->createEntryDetail($detailData);
             }
 
-            $redirect = route('forms.create.rekapitulasi-kesalahan-bacaan');
+            $redirect = route('forms.create.tahsin-tilawah');
             $this->data = compact('redirect');
-            $this->messages = ['Rekapitulasi kesalahan baca berhasil ditambahkan!'];
+            $this->messages = ['Tahsin tilawah berhasil ditambahkan!'];
         };
 
         return $this->callFunction($func);

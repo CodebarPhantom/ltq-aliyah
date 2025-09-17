@@ -29,7 +29,7 @@ class FormEntryController extends MasterController
         $func = function () use ($request) {
 
             Log::info('Form data received: ', $request->all());
-            $this->messages = ['Rekapitulasi kesalahan baca berhasil ditambahkan!'];
+            $this->messages = ['Tahsin Tilawah berhasil ditambahkan!'];
         };
 
         return $this->callFunction($func);

@@ -64,9 +64,9 @@ Route::prefix("/api")->as("api.")->group(function () {
                 Route::post('/{formCode}/store', [FormEntryController::class, 'store'])
                     ->name('store');
 
-                Route::get('/rekapitulasi-kesalahan-bacaan/store', [FormEntryController::class, 'store'])
-                    ->defaults('formCode', 'rekapitulasi-kesalahan-bacaan')
-                    ->name('store.rekapitulasi-kesalahan-bacaan');
+                Route::get('/tahsin-tilawah/store', [FormEntryController::class, 'store'])
+                    ->defaults('formCode', 'tahsin-tilawah')
+                    ->name('store.tahsin-tilawah');
             });
 
             Route::prefix('/summaries')->as('summaries.')->group(function () {

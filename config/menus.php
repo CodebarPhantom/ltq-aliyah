@@ -28,11 +28,11 @@ return
             //     'permission' => ['evaluation-create'],
             // ],
             [
-                'title' => 'Rekapitulasi Kesalahan Baca',
+                'title' => 'Tahsin Tilawah',
                 'icon' => 'ki-filled ki-book',
                 'permission' => ['evaluation-create'],
-                'route' => 'forms.create.rekapitulasi-kesalahan-bacaan',
-                'pathUrl' => ['forms/rekapitulasi-kesalahan-bacaan*']
+                'route' => 'forms.create.tahsin-tilawah',
+                'pathUrl' => ['forms/tahsin-tilawah*']
             ],
             // [
             //     'header' => 'Administrator',

@@ -5,7 +5,7 @@
     <!-- Container -->
     {{-- @include('backoffice.config.company.partials.submenu') --}}
     <!-- Container -->
-    <form id="tahsin-form" action="{{ route('forms.store.rekapitulasi-kesalahan-bacaan') }}" method="POST"
+    <form id="tahsin-form" action="{{ route('forms.store.tahsin-tilawah') }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         @method('POST')
