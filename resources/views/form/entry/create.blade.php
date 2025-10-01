@@ -5,8 +5,7 @@
     <!-- Container -->
     {{-- @include('backoffice.config.company.partials.submenu') --}}
     <!-- Container -->
-    <form id="tahsin-form" action="{{ route('forms.store.tahsin-tilawah') }}" method="POST"
-        enctype="multipart/form-data">
+    <form id="tahsin-form" action="{{ route('forms.store.tahsin-tilawah') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <input type="hidden" name="form_id" value="{{ $data['formData']['id'] }}">
@@ -38,20 +37,26 @@
         <div class="container-fixed">
             <div class="grid gap-5 mx-auto">
                 <div class="card pb-2">
-                    <div class="card-body grid gap-3">
+                    <div class="card-body grid gap-4">
 
                         <!-- Baris 2: Tanggal (1 kolom penuh) -->
                         <div class="flex flex-col gap-1">
-                            <label class="form-label text-sm">Tanggal</label>
+                            <label class="form-label text-sm">
+                                Tanggal
+                                <span class="text-danger"> *</span>
+                            </label>
                             <input class="input w-full px-3 py-1.5 text-sm" name="entry_date" type="date"
                                 value="{{ old('entry_date', $data['user']['entry_date'] ?? date('Y-m-d')) }}" />
                         </div>
 
                         <!-- Baris 1: Nama & Surah (2 kolom) -->
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="grid grid-cols-2 gap-4">
                             <!-- Nama -->
                             <div class="flex flex-col gap-1">
-                                <label class="form-label text-sm">Nama</label>
+                                <label class="form-label text-sm">
+                                    Nama
+                                     <span class="text-danger"> *</span>
+                                </label>
                                 <div class="relative combobox" data-options='@json($data['users'])'
                                     data-multiple="false">
                                     <div
@@ -69,7 +74,10 @@
 
                             <!-- Surah -->
                             <div class="flex flex-col gap-1">
-                                <label class="form-label text-sm">Surah</label>
+                                <label class="form-label text-sm">
+                                    Surah
+                                     <span class="text-danger"> *</span>
+                                </label>
                                 <div class="relative combobox" data-options='@json($data['surahs'])'
                                     data-multiple="false">
                                     <div
@@ -87,31 +95,73 @@
                         </div>
 
                         <!-- Baris 3: Halaman, Ayat Dari, Ayat Sampai (3 kolom) -->
-                        <div class="grid grid-cols-3 gap-3">
+                        <div class="grid grid-cols-3 gap-4">
                             <!-- Halaman -->
                             <div class="flex flex-col gap-1">
-                                <label class="form-label text-sm">Halaman</label>
+                                <label class="form-label text-sm">
+                                    Halaman
+                                     <span class="text-danger"> *</span>
+                                </label>
                                 <input class="input w-full px-3 py-1.5 text-sm" name="page" type="number" min="1"
                                     value="{{ old('page', $data['user']['page'] ?? '') }}" />
                             </div>
 
                             <!-- Ayat Dari -->
                             <div class="flex flex-col gap-1">
-                                <label class="form-label text-sm">Dari Ayat</label>
+                                <label class="form-label text-sm">
+                                    Dari Ayat
+                                     <span class="text-danger"> *</span>
+                                </label>
                                 <input class="input w-full px-3 py-1.5 text-sm" name="verse_start" type="number"
                                     min="1" value="{{ old('verse_start', $data['user']['verse_start'] ?? '') }}" />
                             </div>
 
                             <!-- Ayat Sampai -->
                             <div class="flex flex-col gap-1">
-                                <label class="form-label text-sm">Sampai Ayat</label>
+                                <label class="form-label text-sm">
+                                    Sampai Ayat
+                                     <span class="text-danger"> *</span>
+                                </label>
                                 <input class="input w-full px-3 py-1.5 text-sm" name="verse_end" type="number"
                                     min="1" value="{{ old('verse_end', $data['user']['verse_end'] ?? '') }}" />
                             </div>
                         </div>
 
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Grup Radio Kelas (Inline) -->
+                            <div class="flex flex-col gap-3">
+                                <label class="form-label text-sm">Kelas</label>
+                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                    <input class="radio" name="kelas" type="radio" value="tamhidi1" />
+                                    Tamhidi 1/2 hlm. pertama
+                                </label>
+                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                    <input class="radio" name="kelas" type="radio" value="tamhidi2" />
+                                    Tamhidi 1/2 hlm. kedua
+                                </label>
+                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                    <input class="radio" name="kelas" type="radio" value="tajwidi" />
+                                    Tajwidi 1 hlm.
+                                </label>
+                            </div>
+
+                            <!-- Grup Radio Nilai -->
+                            <div class="flex flex-col gap-2">
+                                <label class="form-label text-sm">Nilai</label>
+                                <div class="flex flex-row gap-4">
+                                    <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                        <input class="radio" name="nilai" type="radio" value="tidak_lulus" />
+                                        Tidak Lulus
+                                    </label>
+                                    <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                        <input checked class="radio" name="nilai" type="radio" value="lulus" />
+                                        Lulus
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Baris 4: Catatan (2 baris) -->
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-4">
                             <label class="form-label text-sm">Catatan</label>
                             <textarea class="textarea w-full px-3 py-1.5 text-sm" name="notes" placeholder="Catatan Tambahan" rows="2"></textarea>
                         </div>

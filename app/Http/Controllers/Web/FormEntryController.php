@@ -48,7 +48,8 @@ class FormEntryController extends MasterController
     public function store(Request $request)
     {
         $func = function () use ($request) {
-            Log::info('Form data received: ', $request->all());
+
+            //Log::info('Form data received: ', $request->all());
             $entryCode = Carbon::now()->format('YmdHisv');
             // Validasi data
             $validated = $request->validate([
@@ -62,7 +63,14 @@ class FormEntryController extends MasterController
                 'counts' => 'required|array',
                 'counts.*' => 'integer',
                 'notes' => 'nullable|string',
+                'kelas' => 'nullable|string',
+                'nilai' => 'nullable|string',
             ]);
+
+            $metadata = [
+                'kelas' => $request->kelas,
+                'nilai' => $request->nilai,
+            ];
 
             // Siapkan data untuk EntryHeader
             $headerData = [
@@ -75,7 +83,8 @@ class FormEntryController extends MasterController
                 'entry_date' => $request->entry_date,
                 'notes' => $request->notes ?? null,
                 'approver_id' => Auth::id(), // Misalnya, user yang sedang login sebagai approver
-                'entry_code'=>$entryCode
+                'entry_code' => $entryCode,
+                'metadata' => $metadata,
             ];
 
             // Buat EntryHeader
@@ -88,7 +97,7 @@ class FormEntryController extends MasterController
                     'entry_header_id' => $entryHeader->id,
                     'question_id' => $questionId,
                     'string_value' => (string) $value,
-                    'entry_code'=>$entryCode
+                    'entry_code' => $entryCode
                 ];
 
                 $this->entryDetailService->createEntryDetail($detailData);

@@ -30,7 +30,7 @@ class SummaryController extends MasterController
             ->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->paginate($pageSize);
-
+//Log::info('EntryHeaders fetched: ', $mapEntryHeaders);
         // Tambahkan atribut total_errors ke setiap item tanpa mengubah struktur asli
         $mapEntryHeaders->getCollection()->transform(function ($item) {
             $item->total_errors = $item->details->sum(function ($detail) {

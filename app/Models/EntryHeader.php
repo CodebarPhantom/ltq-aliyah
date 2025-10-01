@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class EntryHeader extends Model
 {
-    protected $fillable = ['entry_code', 'form_id', 'user_id', 'surah_id', 'approver_id', 'page', 'verse_start', 'verse_end', 'entry_date', 'notes'];
-
+    protected $fillable = ['entry_code', 'form_id', 'user_id', 'surah_id', 'approver_id', 'page', 'verse_start', 'verse_end', 'entry_date', 'notes', 'metadata'];
+    protected $casts = [
+        'metadata' => 'array',
+    ];
     protected $appends = [
         'formatted_entry_date'
     ];
@@ -33,9 +35,9 @@ class EntryHeader extends Model
         return $this->belongsTo(User::class, 'approver_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
-
     }
 
     public function getFormattedEntryDateAttribute(): string

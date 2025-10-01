@@ -15,7 +15,7 @@ use App\Http\Controllers\Api\V1\SummaryController;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::prefix("/api")->as("api.")->group(function () {
+Route::as("api.")->group(function () {
     Route::prefix("/v1")->as("v1.")->group(function () {
 
         Route::prefix("/auth")->as("auth.")->group(function () {
@@ -34,7 +34,7 @@ Route::prefix("/api")->as("api.")->group(function () {
 
         Route::middleware(['auth:sanctum'])->group(function () {
 
-            Route::post('/notifications/mark-all-read', [BaseNotificationController::class, 'markAllAsRead'])->name('notifications.markAllRead');
+            //Route::post('/notifications/mark-all-read', [BaseNotificationController::class, 'markAllAsRead'])->name('notifications.markAllRead');
 
             Route::prefix('/location')->as('location.')->group(function () {
                 Route::get('/datatable', [LocationController::class, 'dataTable'])->name('datatable');

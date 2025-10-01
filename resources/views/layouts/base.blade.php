@@ -136,7 +136,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                 event.preventDefault();
 
                 // Make the POST request using Axios
-                axios.post("{{ route('api.v1.notifications.markAllRead') }}", {}, {
+                axios.post("#", {}, {
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         }
