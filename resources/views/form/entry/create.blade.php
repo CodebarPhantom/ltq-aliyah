@@ -146,9 +146,8 @@
                             </div>
 
                             <!-- Grup Radio Nilai -->
-                            <div class="flex flex-col gap-2">
+                            <div class="flex flex-col gap-3">
                                 <label class="form-label text-sm">Nilai</label>
-                                <div class="flex flex-row gap-4">
                                     <label class="form-label flex items-center gap-2.5 text-nowrap">
                                         <input class="radio" name="nilai" type="radio" value="tidak_lulus" />
                                         Tidak Lulus
@@ -157,7 +156,6 @@
                                         <input checked class="radio" name="nilai" type="radio" value="lulus" />
                                         Lulus
                                     </label>
-                                </div>
                             </div>
                         </div>
                         <!-- Baris 4: Catatan (2 baris) -->

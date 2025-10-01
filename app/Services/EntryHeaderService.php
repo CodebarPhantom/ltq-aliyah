@@ -51,6 +51,7 @@ class EntryHeaderService
                 'verse_start'=> $entryHeader->verse_start,
                 'verse_end'=> $entryHeader->verse_end,
                 'notes'=>$entryHeader->notes,
+                'metadata'=>$entryHeader->metadata,
                 'user'=> [
                     'id' => $entryHeader->user->id,
                     'name' => $entryHeader->user->name
