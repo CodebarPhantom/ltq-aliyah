@@ -70,8 +70,6 @@ class UserService extends MasterService
         return $user;
     }
 
-
-
     public function showUser($id)
     {
         return User::with(['location', 'role'])->where('id', $id)->first();
@@ -135,14 +133,19 @@ class UserService extends MasterService
 
     public function getAllUserForSelect()
     {
+        $authLocations = json_decode(auth()->user()->location_id, true) ?? [];
+
         return User::active()
+            ->where(function ($query) use ($authLocations) {
+                foreach ($authLocations as $loc) {
+                    $query->orWhereJsonContains('location_id', $loc);
+                }
+            })
             ->orderBy('name', 'asc')
             ->get()
-            ->map(function ($division) {
-                return [
-                    'id' => $division->id,
-                    'label' => $division->name,
-                ];
-            });
+            ->map(fn($user) => [
+                'id' => $user->id,
+                'label' => $user->name,
+            ]);
     }
 }

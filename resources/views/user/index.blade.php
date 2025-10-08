@@ -54,13 +54,6 @@
                                                 </span>
                                             </span>
                                         </th>
-                                        <th class="text-center" data-datatable-column="lokasi">
-                                            <span class="sort">
-                                                <span class="sort-label">
-                                                    Lokasi
-                                                </span>
-                                            </span>
-                                        </th>
                                         <th class="text-center" data-datatable-column="role">
                                             <span class="sort">
                                                 <span class="sort-label">
@@ -137,15 +130,6 @@
                                 <span class="text-sm text-gray-500">${row.email}</span>
                             </div>
                         `;
-                    },
-                    createdCell(cell) {
-                        cell.classList.add('text-center');
-                    },
-                },
-                location:{
-                    title: 'lokasi',
-                    render: (item, row, context) => {
-                        return ` ${row.location}`;
                     },
                     createdCell(cell) {
                         cell.classList.add('text-center');

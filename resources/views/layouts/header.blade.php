@@ -31,7 +31,7 @@
 
             <div class="dropdown" data-dropdown="true" data-dropdown-offset="70px, 10px"
                 data-dropdown-placement="bottom-end" data-dropdown-trigger="click|lg:click">
-                <button
+                {{-- <button
                     class="dropdown-toggle btn btn-icon btn-icon-lg relative cursor-pointer size-9 rounded-full hover:bg-primary-light hover:text-primary dropdown-open:bg-primary-light dropdown-open:text-primary text-gray-500">
                     <i class="ki-filled ki-notification-on">
                     </i>
@@ -40,8 +40,8 @@
                             class="badge badge-dot badge-danger size-[5px] absolute top-0.5 right-0.5 transform translate-y-1/2">
                         </span>
                     @endif
-                </button>
-                <div class="dropdown-content light:border-gray-300 w-full max-w-[460px]">
+                </button> --}}
+                {{-- <div class="dropdown-content light:border-gray-300 w-full max-w-[460px]">
                     <div class="flex items-center justify-between gap-2.5 text-sm text-gray-900 font-semibold px-5 py-2.5"
                         id="notifications_header">
                         Notifikasi
@@ -236,7 +236,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="menu" data-menu="true">
                 <div class="menu-item" data-menu-item-offset="20px, 10px" data-menu-item-placement="bottom-end"

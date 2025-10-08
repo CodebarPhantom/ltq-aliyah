@@ -55,14 +55,20 @@
                         <!-- Lokasi -->
                         <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                             <label class="form-label max-w-56">Lokasi</label>
-                            <select class="select" name="location_id">
-                                <option value="">--- Silahkan Pilih ---</option>
-                                @foreach ($data['locations'] as $location)
-                                    <option value="{{ $location['id'] }}" @selected(old('location_id', $data['user']['location_id'] ?? '') == $location['id'])>
-                                        {{ $location['name'] }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div class="relative inline-block w-full combobox"
+                                data-api="{{ route('api.v1.location.get-combobox') }}" data-collection="locations"
+                                data-multiple="true">
+                                <div
+                                    class="pill-container flex flex-wrap items-center w-full px-2 py-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Search..."
+                                        class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
+                                </div>
+                                <input type="hidden" class="selected-data" name="location_id" value="{{ $data['user']['location_id'] }}" />
+                                <div
+                                    class="dropdown-menu absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                    <div class="options-container max-h-40 overflow-y-auto"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Role -->
@@ -119,3 +125,5 @@
     </form>
     <!-- End of Container -->
 @endsection
+@include('partials.advanced-selectbox')
+

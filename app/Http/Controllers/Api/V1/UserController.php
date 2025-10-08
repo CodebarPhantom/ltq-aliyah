@@ -60,7 +60,6 @@ class UserController extends MasterController
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'location' => $user->location ? $user->location->name : 'N/A', // Assuming location is a relation
                 'is_active'=> $user->is_active,
                 'is_active_name'=> $user->is_active_name,
                 'is_active_color' => $user->is_active_color, // Accessor used here

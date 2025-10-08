@@ -38,6 +38,7 @@ Route::as("api.")->group(function () {
 
             Route::prefix('/location')->as('location.')->group(function () {
                 Route::get('/datatable', [LocationController::class, 'dataTable'])->name('datatable');
+                Route::get('/get-combobox', [LocationController::class, 'getCombobox'])->name('get-combobox');
                 Route::delete('/{location}', [LocationController::class, 'destroy'])->name('destroy');
             });
 

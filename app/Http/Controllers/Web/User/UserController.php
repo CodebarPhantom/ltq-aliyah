@@ -65,11 +65,13 @@ class UserController extends MasterController
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
-                'location_id' => 'required|exists:locations,id',
-                'password' => 'required|string|min:6|confirmed',
+                'location_id' => 'required|',
+                'password' => 'required|string|min:4|confirmed',
                 'role_id' => 'required|exists:roles,id',
                 //'url_image' => 'nullable|image|max:2048', // max 2MB
             ]);
+
+            //dd($validated);
 
             // Handle password kosong
             // if (empty($validated['password'])) {
@@ -117,10 +119,10 @@ class UserController extends MasterController
             $breadcrumbs = ['User', 'Ubah User'];
             $pageTitle = "Ubah User";
             $user = $this->userService->showUser($id);
-            $locations = $this->locationService->getAllLocations();
+            //$locations = $this->locationService->getAllLocations();
             $roles = $this->roleService->getAllRole();
 
-            $this->data = compact('breadcrumbs', 'pageTitle', 'user', 'locations', 'roles');
+            $this->data = compact('breadcrumbs', 'pageTitle', 'user', 'roles');
         };
         return $this->callFunction($func, view('user.edit'), null);
     }
@@ -144,9 +146,9 @@ class UserController extends MasterController
                     'max:255',
                     Rule::unique('users', 'email')->ignore($id),
                 ],
-                'location_id'           => 'required|exists:locations,id',
+                'location_id'           => 'required',
                 'role_id'               => 'required|exists:roles,id',
-                'password'              => 'nullable|string|min:6|confirmed',
+                'password'              => 'nullable|string|min:4|confirmed',
                 'is_active'             => 'required|boolean',
             ]);
 

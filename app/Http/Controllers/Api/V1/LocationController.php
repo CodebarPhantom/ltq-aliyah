@@ -87,4 +87,24 @@ class LocationController extends MasterController
 
         return $this->callFunction($func, null, null);
     }
+
+    public function getCombobox()
+    {
+        $func = function () {
+            //Gate::authorize('readPolicy', Employee::class);
+
+            $locationData = $this->locationService->getAllLocations()->select('id', 'name')->toArray();
+
+            $locations = array_map(function ($item) {
+                return [
+                    "id" => $item["id"],
+                    "label" => $item["name"], // Change 'name' to 'label'
+                ];
+            }, $locationData);
+
+            $this->data = compact('locations');
+        };
+
+        return $this->callFunction($func);
+    }
 }
