@@ -37,10 +37,10 @@
         <div class="container-fixed">
             <div class="grid gap-5 mx-auto">
                 <div class="card pb-2">
-                    <div class="card-body grid gap-4">
+                    <div class="card-body grid gap-6">
 
                         <!-- Baris 2: Tanggal (1 kolom penuh) -->
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-6">
                             <label class="form-label text-sm">
                                 Tanggal
                                 <span class="text-danger"> *</span>
@@ -50,12 +50,12 @@
                         </div>
 
                         <!-- Baris 1: Nama & Surah (2 kolom) -->
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-6">
                             <!-- Nama -->
                             <div class="flex flex-col gap-1">
                                 <label class="form-label text-sm">
                                     Nama
-                                     <span class="text-danger"> *</span>
+                                    <span class="text-danger"> *</span>
                                 </label>
                                 <div class="relative combobox" data-options='@json($data['users'])'
                                     data-multiple="false">
@@ -76,7 +76,7 @@
                             <div class="flex flex-col gap-1">
                                 <label class="form-label text-sm">
                                     Surah
-                                     <span class="text-danger"> *</span>
+                                    <span class="text-danger"> *</span>
                                 </label>
                                 <div class="relative combobox" data-options='@json($data['surahs'])'
                                     data-multiple="false">
@@ -95,12 +95,12 @@
                         </div>
 
                         <!-- Baris 3: Halaman, Ayat Dari, Ayat Sampai (3 kolom) -->
-                        <div class="grid grid-cols-3 gap-4">
+                        <div class="grid grid-cols-3 gap-6">
                             <!-- Halaman -->
                             <div class="flex flex-col gap-1">
                                 <label class="form-label text-sm">
                                     Halaman
-                                     <span class="text-danger"> *</span>
+                                    <span class="text-danger"> *</span>
                                 </label>
                                 <input class="input w-full px-3 py-1.5 text-sm" name="page" type="number" min="1"
                                     value="{{ old('page', $data['user']['page'] ?? '') }}" />
@@ -110,7 +110,7 @@
                             <div class="flex flex-col gap-1">
                                 <label class="form-label text-sm">
                                     Dari Ayat
-                                     <span class="text-danger"> *</span>
+                                    <span class="text-danger"> *</span>
                                 </label>
                                 <input class="input w-full px-3 py-1.5 text-sm" name="verse_start" type="number"
                                     min="1" value="{{ old('verse_start', $data['user']['verse_start'] ?? '') }}" />
@@ -120,48 +120,49 @@
                             <div class="flex flex-col gap-1">
                                 <label class="form-label text-sm">
                                     Sampai Ayat
-                                     <span class="text-danger"> *</span>
+                                    <span class="text-danger"> *</span>
                                 </label>
                                 <input class="input w-full px-3 py-1.5 text-sm" name="verse_end" type="number"
                                     min="1" value="{{ old('verse_end', $data['user']['verse_end'] ?? '') }}" />
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Grup Radio Kelas (Inline) -->
-                            <div class="flex flex-col gap-3">
-                                <label class="form-label text-sm">Kelas</label>
-                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                        <div class="flex flex-col gap-6">
+                            <label class="form-label text-sm">Kelas</label>
+                            <div class="flex items-center gap-6">
+                                <label class="form-label flex items-center gap-2 text-nowrap">
                                     <input class="radio" name="kelas" type="radio" value="tamhidi1" />
                                     Tamhidi 1/2 hlm. pertama
                                 </label>
-                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                <label class="form-label flex items-center gap-2 text-nowrap">
                                     <input class="radio" name="kelas" type="radio" value="tamhidi2" />
                                     Tamhidi 1/2 hlm. kedua
                                 </label>
-                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                <label class="form-label flex items-center gap-2 text-nowrap">
                                     <input class="radio" name="kelas" type="radio" value="tajwidi" />
                                     Tajwidi 1 hlm.
                                 </label>
                             </div>
-
-                            <!-- Grup Radio Nilai -->
-                            <div class="flex flex-col gap-3">
-                                <label class="form-label text-sm">Nilai</label>
-                                    <label class="form-label flex items-center gap-2.5 text-nowrap">
-                                        <input class="radio" name="nilai" type="radio" value="tidak_lulus" />
-                                        Tidak Lulus
-                                    </label>
-                                    <label class="form-label flex items-center gap-2.5 text-nowrap">
-                                        <input checked class="radio" name="nilai" type="radio" value="lulus" />
-                                        Lulus
-                                    </label>
-                            </div>
                         </div>
+
                         <!-- Baris 4: Catatan (2 baris) -->
-                        <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-6">
                             <label class="form-label text-sm">Catatan</label>
                             <textarea class="textarea w-full px-3 py-1.5 text-sm" name="notes" placeholder="Catatan Tambahan" rows="2"></textarea>
+                        </div>
+
+                        <div class="flex flex-col gap-6">
+                            <label class="form-label text-sm">Nilai</label>
+                            <div class="flex items-center gap-6">
+                                <label class="form-label flex items-center gap-2 text-nowrap text-red-600">
+                                    <input class="radio radio-lg" name="nilai" type="radio" value="tidak_lulus" />
+                                    Tidak Lulus
+                                </label>
+                                <label class="form-label flex items-center gap-2 text-nowrap text-green-600">
+                                    <input checked class="radio radio-lg" name="nilai" type="radio" value="lulus" />
+                                    Lulus
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
