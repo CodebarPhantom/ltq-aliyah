@@ -37,4 +37,18 @@ class LocationService extends MasterService
     {
         return Location::active()->get();
     }
+
+    public function getAllLocationForSelect()
+    {
+        $authLocations = json_decode(auth()->user()->location_id, true) ?? [];
+
+        return Location::active()
+            ->whereIn('id', $authLocations)
+            ->orderBy('name', 'asc')
+            ->get()
+            ->map(fn($location) => [
+                'id' => $location->id,
+                'label' => $location->name,
+            ]);
+    }
 }

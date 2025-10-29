@@ -10,17 +10,18 @@ use App\Services\SurahService;
 use App\Services\UserService;
 use App\Services\EntryHeaderService;
 use App\Services\EntryDetailService;
+use App\Services\LocationService;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class FormEntryController extends MasterController
 {
-    protected $formService, $surahService, $userService, $entryHeaderService, $entryDetailService;
+    protected $formService, $surahService, $userService, $entryHeaderService, $entryDetailService, $locationService;
 
 
     // Inject multiple services through the constructor
-    public function __construct(FormService $formService, SurahService $surahService, UserService $userService, EntryHeaderService $entryHeaderService, EntryDetailService $entryDetailService)
+    public function __construct(FormService $formService, SurahService $surahService, UserService $userService, EntryHeaderService $entryHeaderService, EntryDetailService $entryDetailService, LocationService $locationService)
     {
         parent::__construct();
         $this->formService = $formService;
@@ -28,6 +29,7 @@ class FormEntryController extends MasterController
         $this->userService = $userService;
         $this->entryHeaderService = $entryHeaderService;
         $this->entryDetailService = $entryDetailService;
+        $this->locationService = $locationService;
     }
 
     public function create($formCode)
@@ -39,7 +41,10 @@ class FormEntryController extends MasterController
             $surahs = $this->surahService->getAllSurahForSelect();
             $pageTitle = $formData['name'];
             $users = $this->userService->getAllUserForSelect();
-            $this->data = compact('breadcrumbs', 'pageTitle', 'formCode', 'formData', 'surahs', 'users');
+            $locations = $this->locationService->getAllLocationForSelect();
+            // Determine if multiple locations exist. If more than 1 then true, otherwise false.
+            $multiLocation = (is_countable($locations) ? count($locations) : 0) > 1;
+            $this->data = compact('breadcrumbs', 'pageTitle', 'formCode', 'formData', 'surahs', 'users', 'locations', 'multiLocation');
         };
 
         return $this->callFunction($func, view('form.entry.create'));

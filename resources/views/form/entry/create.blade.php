@@ -49,28 +49,79 @@
                                 value="{{ old('entry_date', $data['user']['entry_date'] ?? date('Y-m-d')) }}" />
                         </div>
 
-                        <!-- Baris 1: Nama & Surah (2 kolom) -->
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Nama -->
-                            <div class="flex flex-col gap-1">
+                        @if ($data['multiLocation'])
+                            <div class="flex flex-col gap-4">
                                 <label class="form-label text-sm">
-                                    Nama
+                                    Lokasi Tahsin
                                     <span class="text-danger"> *</span>
                                 </label>
-                                <div class="relative combobox" data-options='@json($data['users'])'
+                                <div class="relative combobox" data-options='@json($data['locations'])'
                                     data-multiple="false">
                                     <div
                                         class="pill-container flex items-center w-full px-2 py-1.5 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
-                                        <input type="text" placeholder="Cari Peserta"
+                                        <input type="text" placeholder="Cari Lokasi Tahsin"
                                             class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
                                     </div>
-                                    <input id="user_id" type="hidden" class="selected-data" name="user_id" />
+                                    <input id="location_id" type="hidden" class="selected-data" name="location_id" />
                                     <div
                                         class="dropdown-menu absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
                                         <div class="options-container max-h-40 overflow-y-auto"></div>
                                     </div>
                                 </div>
                             </div>
+                        @endif
+
+
+                        <!-- Baris 1: Nama & Surah (2 kolom) -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Nama -->
+                            @if ($data['multiLocation'])
+                                <div class="flex flex-col gap-1">
+                                    <label class="form-label text-sm">
+                                        Nama
+                                        <span class="text-danger"> *</span>
+                                    </label>
+                                    <div class="relative combobox" id="location_combobox"
+                                        data-api="{{ route('api.v1.users.get-combobox') }}" data-collection="locations"
+                                        data-params='{"location_id": ""}' data-multiple="false">
+                                        <div
+                                            class="pill-container flex items-center w-full px-2 py-1.5 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
+                                            <input type="text" placeholder="Cari Peserta"
+                                                class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
+                                        </div>
+                                        <input id="user_id" type="hidden" class="selected-data" name="user_id" />
+                                        <div
+                                            class="dropdown-menu absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                            <div class="options-container max-h-40 overflow-y-auto"></div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            @else
+                                <div class="flex flex-col gap-1">
+                                    <label class="form-label text-sm">
+                                        Nama
+                                        <span class="text-danger"> *</span>
+                                    </label>
+                                    <div class="relative combobox" data-options='@json($data['users'])'
+                                        data-multiple="false">
+                                        <div
+                                            class="pill-container flex items-center w-full px-2 py-1.5 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500">
+                                            <input type="text" placeholder="Cari Peserta"
+                                                class="search-box flex-grow px-2 py-1 text-sm text-gray-700 bg-transparent border-none outline-none" />
+                                        </div>
+                                        <input id="user_id" type="hidden" class="selected-data" name="user_id" />
+                                        <div
+                                            class="dropdown-menu absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                                            <div class="options-container max-h-40 overflow-y-auto"></div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            @endif
+
 
                             <!-- Surah -->
                             <div class="flex flex-col gap-1">
@@ -102,8 +153,8 @@
                                     Halaman
                                     <span class="text-danger"> *</span>
                                 </label>
-                                <input class="input w-full px-3 py-1.5 text-sm" name="page" type="number" min="1"
-                                    value="{{ old('page', $data['user']['page'] ?? '') }}" />
+                                <input class="input w-full px-3 py-1.5 text-sm" name="page" type="number"
+                                    min="1" value="{{ old('page', $data['user']['page'] ?? '') }}" />
                             </div>
 
                             <!-- Ayat Dari -->
@@ -226,6 +277,9 @@
 @push('javascript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            setupLinkedCombobox('.combobox[data-options]', '#location_combobox', 'location_id');
+
+
             // Initialize counts object
             const counts = {};
 

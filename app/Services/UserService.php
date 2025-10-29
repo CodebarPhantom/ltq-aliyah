@@ -131,16 +131,27 @@ class UserService extends MasterService
         return User::get();
     }
 
-    public function getAllUserForSelect()
+    public function getAllUserForSelect($locationId = null)
     {
         $authLocations = json_decode(auth()->user()->location_id, true) ?? [];
 
-        return User::active()
-            ->where(function ($query) use ($authLocations) {
+        $query = User::active();
+        // If a specific locationId is provided, filter by that single location
+        if (!is_null($locationId)) {
+            // If a single location id is provided, normalize numeric strings to int
+            // so it matches JSON arrays stored as numbers (e.g. [1]).
+            $locFilter = is_array($locationId) ? $locationId : (is_numeric($locationId) ? (int) $locationId : $locationId);
+            $query->whereJsonContains('location_id', $locFilter);
+        } else {
+            // Otherwise, apply the auth user's allowed locations (OR conditions)
+            $query->where(function ($q) use ($authLocations) {
                 foreach ($authLocations as $loc) {
-                    $query->orWhereJsonContains('location_id', $loc);
+                    $q->orWhereJsonContains('location_id', $loc);
                 }
-            })
+            });
+        }
+
+        return $query
             ->orderBy('name', 'asc')
             ->get()
             ->map(fn($user) => [

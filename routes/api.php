@@ -59,6 +59,8 @@ Route::as("api.")->group(function () {
 
             Route::prefix('/users')->as('users.')->group(function () {
                 Route::get('/datatable', [UserController::class, 'dataTable'])->name('datatable');
+                Route::get('/get-combobox', [UserController::class, 'getCombobox'])->name('get-combobox');
+
             });
 
             Route::prefix("/forms")->as("forms.")->group(function () {

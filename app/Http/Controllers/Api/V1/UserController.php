@@ -79,6 +79,19 @@ class UserController extends MasterController
         ]);
     }
 
+    public function getCombobox(Request $request)
+    {
+        $func = function () use ($request) {
+            //Gate::authorize('readPolicy', Departement::class);
+
+            $locationId = $request->input('location_id');
+            $locations = $this->userService->getAllUserForSelect($locationId);
+
+            $this->data = compact('locations');
+        };
+
+        return $this->callFunction($func);
+    }
 
     // public function create(Request $request)
     // {
