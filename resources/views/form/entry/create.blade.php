@@ -182,17 +182,21 @@
                             <!-- Grup Radio Kelas (Inline) -->
                             <div class="flex flex-col gap-3">
                                 <label class="form-label text-sm">Kelas</label>
-                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                {{-- <label class="form-label flex items-center gap-2.5 text-nowrap">
                                     <input class="radio" name="kelas" type="radio" value="tamhidi1" />
                                     Tamhidi 1/2 hlm. pertama
                                 </label>
                                 <label class="form-label flex items-center gap-2.5 text-nowrap">
                                     <input class="radio" name="kelas" type="radio" value="tamhidi2" />
                                     Tamhidi 1/2 hlm. kedua
+                                </label> --}}
+                                <label class="form-label flex items-center gap-2.5 text-nowrap">
+                                    <input class="radio" name="kelas" type="radio" value="idadi" />
+                                    Idadi
                                 </label>
                                 <label class="form-label flex items-center gap-2.5 text-nowrap">
                                     <input class="radio" name="kelas" type="radio" value="tajwidi" />
-                                    Tajwidi 1 hlm.
+                                    Tajwidi
                                 </label>
                             </div>
                         </div>

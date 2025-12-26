@@ -150,7 +150,8 @@
                                             $kelasMap = [
                                                 'tamhidi1' => 'Tamhidi 1/2 hlm. pertama',
                                                 'tamhidi2' => 'Tamhidi 1/2 hlm. kedua',
-                                                'tajwidi' => 'Tajwidi 1 hlm.',
+                                                'idadi' => 'Idadi',
+                                                'tajwidi' => 'Tajwidi',
                                             ];
 
                                             $nilaiMap = [
